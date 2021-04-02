@@ -11,5 +11,6 @@ module.exports = merge(common, {
     publicPath: "http://localhost:3000/dist/",
     hot: true,
     open: true, //自动打开浏览器
+    historyApiFallback: true, // 使用H5路由需要配置
   },
 });

@@ -79,6 +79,7 @@ module.exports = {
     extensions: ['\*', '.js', '.jsx', '.vue'],// 能够使用户在引入模块时不带扩展
     alias: {
       "@": path.resolve(__dirname, 'src'),
+      'vue$': 'vue/dist/vue.esm-bundler.js'
     },
   },
   output: {

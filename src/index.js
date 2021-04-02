@@ -1,9 +1,8 @@
-import Vue from 'vue';
-import { h, createApp } from 'vue'
-import App from './App.vue';
-// import router from './router';
-// import store from './store';
-import './global.css';
+import { createApp } from 'vue'
+import App from "./App";
+import routers from './routers';
+import ElementPlus from 'element-plus';
+import 'element-plus/lib/theme-chalk/index.css';
 
 // Vue.use(Public);
 
@@ -16,4 +15,7 @@ import './global.css';
 //     // store,
 //     render: () => h(App),
 // }).$mount('#root');
-createApp(App).mount('#root')
+const app = createApp(App)
+app.use(routers)
+app.use(ElementPlus)
+app.mount('#root')
