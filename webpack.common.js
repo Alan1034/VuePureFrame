@@ -5,7 +5,6 @@ const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
   entry: "./src/index.js",
-  // mode: "development" | "production",
   module: {
     rules: [
       {
@@ -76,7 +75,12 @@ module.exports = {
       },
     ]
   },
-  resolve: { extensions: ['\*', '.js', '.jsx', '.vue'] },
+  resolve: {
+    extensions: ['\*', '.js', '.jsx', '.vue'],// 能够使用户在引入模块时不带扩展
+    alias: {
+      "@": path.resolve(__dirname, 'src'),
+    },
+  },
   output: {
     path: path.resolve(__dirname, "dist/"),
     publicPath: "/dist/",
