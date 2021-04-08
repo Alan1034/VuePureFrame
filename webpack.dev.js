@@ -11,5 +11,6 @@ module.exports = merge(common, {
     publicPath: "http://localhost:3000/dist/",
     hot: true,
     open: true, //自动打开浏览器
+    // host: '0.0.0.0',//开启项目本地服务
   },
 });
