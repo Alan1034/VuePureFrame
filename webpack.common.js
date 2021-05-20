@@ -14,7 +14,7 @@ module.exports = {
           !/\.vue\.js/.test(file)
         ),
         use: [
-          "thread-loader",// 多线程编译
+          // "thread-loader",// 多线程编译，可能会导致报错
           {
             loader: 'babel-loader',
             options: {
@@ -63,7 +63,7 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           use: [
-            "thread-loader",// 多线程编译
+            // "thread-loader",// 多线程编译，可能会导致报错
             {
               loader: 'babel-loader',
               options: {

@@ -5,6 +5,7 @@ const NotFoundComponent = { template: '<p>Page not found</p>' }
 
 const routes = [
   { path: '/home', component: Home },
+  { path: '/', component: Home },
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFoundComponent },
 ]
 
