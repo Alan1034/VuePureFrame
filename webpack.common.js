@@ -1,10 +1,14 @@
 const path = require("path");
 const webpack = require("webpack");
+const defaultSettings = require('./settings.js')
 const { VueLoaderPlugin } = require('vue-loader')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
+const name = defaultSettings.title || 'Base管理系统' // 标题
+const VUE_APP_BASE_API = process.env.VUE_APP_BASE_API || '/' //公共路径，在package.json内传入
 module.exports = {
-  entry: "./src/index.js",
+  name,
+  entry: "./src/main.js",
   module: {
     rules: [
       {
@@ -14,7 +18,7 @@ module.exports = {
           !/\.vue\.js/.test(file)
         ),
         use: [
-          // "thread-loader",// 多线程编译，可能会导致报错
+          "thread-loader",// 多线程编译，可能会导致报错
           {
             loader: 'babel-loader',
             options: {
@@ -63,7 +67,7 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           use: [
-            // "thread-loader",// 多线程编译，可能会导致报错
+            "thread-loader",// 多线程编译，可能会导致报错
             {
               loader: 'babel-loader',
               options: {
@@ -83,14 +87,20 @@ module.exports = {
     },
   },
   output: {
-    path: path.resolve(__dirname, "dist/"),
+    path: path.resolve(__dirname, "dist"),
     publicPath: "/dist/",
     filename: "bundle.js"
   },
   //why:https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags
-  plugins: [new webpack.HotModuleReplacementPlugin(), new VueLoaderPlugin(),
-  new webpack.DefinePlugin({
-    "__VUE_OPTIONS_API__": true,
-    "__VUE_PROD_DEVTOOLS__": false,
-  })]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new VueLoaderPlugin(),
+    new HtmlWebpackPlugin({
+      title: name
+    }), // 打包时生成一个index.html
+    new webpack.DefinePlugin({
+      'process.env.VUE_APP_BASE_API': JSON.stringify(VUE_APP_BASE_API),
+      '__VUE_OPTIONS_API__': true,
+      '__VUE_PROD_DEVTOOLS__': false,
+    })],
 };
