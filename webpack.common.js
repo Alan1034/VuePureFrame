@@ -1,6 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
-const defaultSettings = require('./src/settings.js')
+const defaultSettings = require('./settings.js')
 const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -9,7 +9,7 @@ const VUE_APP_BASE_API = process.env.VUE_APP_BASE_API || '/'
 
 module.exports = {
   name,
-  entry: "./src/main.js",
+  entry: "./src/index.js",
   module: {
     rules: [
       {
@@ -19,7 +19,7 @@ module.exports = {
           !/\.vue\.js/.test(file)
         ),
         use: [
-          "thread-loader",// 多线程编译，可能会导致报错
+          // "thread-loader",// 多线程编译，可能会导致报错
           {
             loader: 'babel-loader',
             options: {
@@ -68,7 +68,7 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           use: [
-            "thread-loader",// 多线程编译，可能会导致报错
+            // "thread-loader",// 多线程编译，可能会导致报错
             {
               loader: 'babel-loader',
               options: {
@@ -89,7 +89,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    publicPath: process.env.ENV === "dev" ? "/dist/" : "./",// package.json处传入的ENV参数
+    publicPath: process.env.ENV === "dev" ? "/dist/" : "",// package.json处传入的ENV参数
     filename: "bundle.js"
   },
 
