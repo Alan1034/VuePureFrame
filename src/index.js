@@ -15,6 +15,11 @@ import 'element-plus/lib/theme-chalk/index.css';
 //     // store,
 //     render: () => h(App),
 // }).$mount('#root');
+if (!document.getElementById("root")) {
+    const div = document.createElement('div');
+    div.id = "root";
+    document.body.appendChild(div);
+}
 const app = createApp(App)
 app.use(routers)
 app.use(ElementPlus)
