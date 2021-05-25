@@ -1,11 +1,12 @@
 const path = require("path");
 const webpack = require("webpack");
-const defaultSettings = require('./settings.js')
+const defaultSettings = require('./src/settings.js')
 const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const name = defaultSettings.title || 'Base管理系统' // 标题
-const VUE_APP_BASE_API = process.env.VUE_APP_BASE_API || '/' //公共路径，在package.json内传入
+const VUE_APP_BASE_API = process.env.VUE_APP_BASE_API || '/'
+
 module.exports = {
   name,
   entry: "./src/main.js",
@@ -88,19 +89,23 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    publicPath: "/dist/",
+    publicPath: process.env.ENV === "dev" ? "/dist/" : "./",// package.json处传入的ENV参数
     filename: "bundle.js"
   },
-  //why:https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags
+
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      title: name
-    }), // 打包时生成一个index.html
+      title: name,
+      favicon: path.resolve(__dirname, "public/favicon.ico")
+    }),
+    // 打包时生成一个index.html
+    // 配置：https://github.com/jantimon/html-webpack-plugin#options
     new webpack.DefinePlugin({
       'process.env.VUE_APP_BASE_API': JSON.stringify(VUE_APP_BASE_API),
       '__VUE_OPTIONS_API__': true,
       '__VUE_PROD_DEVTOOLS__': false,
     })],
+  //why:https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags
 };

@@ -2,7 +2,7 @@
   "name": "vue-pure-frame",
   "version": "1.0.0",
   "scripts": {
-    "dev": "cross-env VUE_APP_BASE_API=\"/dev-api\" webpack-dev-server --config webpack.dev.js",
+    "dev": "cross-env ENV=dev VUE_APP_BASE_API=\"/dev-api\" webpack-dev-server --config webpack.dev.js",
     "build": "cross-env VUE_APP_BASE_API=\"/prod-api\" webpack --config webpack.prod.js",
     "build:test": "cross-env VUE_APP_BASE_API=\"/test-api\" webpack --config webpack.prod.js"
   },
