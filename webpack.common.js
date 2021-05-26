@@ -12,7 +12,7 @@ module.exports = {
     entry: "./src/index.js",
     module: {
         rules: [{
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: file => (
                     /node_modules/.test(file) &&
                     !/\.vue\.js/.test(file)
