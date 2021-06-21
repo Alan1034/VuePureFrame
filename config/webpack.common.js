@@ -78,11 +78,11 @@ module.exports = {
     resolve: {
         extensions: ['\*', '.js', '.jsx', '.vue'],// 能够使用户在引入模块时不带扩展
         alias: {
-            "@": path.resolve(__dirname, 'src'),
+            "@": path.resolve(__dirname, '../src'),
         },
     },
     output: {
-        path: path.resolve(__dirname, "dist/"),
+        path: path.resolve(__dirname, "../dist/"),
         filename: "bundle.js"
     },
     //why:https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags
@@ -90,8 +90,8 @@ module.exports = {
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             title: `Vue Starter`,
-            favicon: path.resolve(__dirname, "public/favicon.ico"),
-            template: path.resolve(__dirname, "public/index.html")
+            favicon: path.resolve(__dirname, "../public/favicon.ico"),
+            template: path.resolve(__dirname, "../public/index.html")
         }),
         new webpack.DefinePlugin({
             "__VUE_OPTIONS_API__": true,
