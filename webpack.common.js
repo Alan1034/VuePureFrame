@@ -12,13 +12,62 @@ module.exports = {
     entry: "./src/index.js",
     module: {
         rules: [{
-                test: /\.(js|jsx)$/,
-                exclude: file => (
-                    /node_modules/.test(file) &&
-                    !/\.vue\.js/.test(file)
-                ),
+            test: /\.(js|jsx)$/,
+            exclude: file => (
+                /node_modules/.test(file) &&
+                !/\.vue\.js/.test(file)
+            ),
+            use: [
+                // "thread-loader",// 多线程编译，可能会导致报错
+                {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            ],
+        },
+
+        {
+            test: /\.css$/,
+            use: ['vue-style-loader', 'css-loader']
+        },
+        {
+            test: /\.less$/,
+            use: ['vue-style-loader', 'css-loader', 'less-loader']
+        },
+        {
+            test: /\.scss$/,
+            use: [
+                'vue-style-loader',
+                'css-loader',
+                'sass-loader'
+            ]
+        },
+        {
+            test: /\.(eot|svg|ttf|woff|woff2)$/,
+            use: {
+                loader: 'file-loader',
+                options: {
+                    outputPath: 'fonts/'
+                }
+            }
+        },
+        {
+            test: /\.(png|jpg|gif|svg)$/,
+            use: {
+                loader: 'file-loader',
+                options: {
+                    outputPath: 'assets/'
+                }
+            }
+        },
+        {
+            test: /\.vue$/,
+            loader: 'vue-loader',
+            options: {
                 use: [
-                    "thread-loader",// 多线程编译，可能会导致报错
+                    // "thread-loader",// 多线程编译，可能会导致报错
                     {
                         loader: 'babel-loader',
                         options: {
@@ -26,57 +75,8 @@ module.exports = {
                         }
                     }
                 ],
-            },
-
-            {
-                test: /\.css$/,
-                use: ['vue-style-loader', 'css-loader']
-            },
-            {
-                test: /\.less$/,
-                use: ['vue-style-loader', 'css-loader', 'less-loader']
-            },
-            {
-                test: /\.scss$/,
-                use: [
-                    'vue-style-loader',
-                    'css-loader',
-                    'sass-loader'
-                ]
-            },
-            {
-                test: /\.(eot|svg|ttf|woff|woff2)$/,
-                use: {
-                    loader: 'file-loader',
-                    options: {
-                        outputPath: 'fonts/'
-                    }
-                }
-            },
-            {
-                test: /\.(png|jpg|gif|svg)$/,
-                use: {
-                    loader: 'file-loader',
-                    options: {
-                        outputPath: 'assets/'
-                    }
-                }
-            },
-            {
-                test: /\.vue$/,
-                loader: 'vue-loader',
-                options: {
-                    use: [
-                        "thread-loader",// 多线程编译，可能会导致报错
-                        {
-                            loader: 'babel-loader',
-                            options: {
-                                presets: ['@babel/preset-env']
-                            }
-                        }
-                    ],
-                }
-            },
+            }
+        },
         ]
     },
     resolve: {
@@ -87,8 +87,7 @@ module.exports = {
         },
     },
     output: {
-        path: path.resolve(__dirname, "dist"),
-        publicPath: process.env.ENV === "dev" ? "/dist/" : "./", // package.json处传入的ENV参数
+        path: path.join(__dirname, "/dist/"),
         filename: "bundle.js"
     },
 
@@ -98,7 +97,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: name,
             favicon: path.resolve(__dirname, "public/favicon.ico"),
-            template: path.resolve(__dirname, "public/index.html")
+            template: path.resolve(__dirname, "public/index.html"),
         }),
         // 打包时生成一个index.html，需要在entry配置入口DOM，例：
         // if (!document.getElementById("root")) {

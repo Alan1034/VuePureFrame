@@ -8,7 +8,6 @@ module.exports = merge(common, {
   devServer: {
     // host: '0.0.0.0',
     contentBase: path.join(__dirname, "dist"),
-    publicPath: "http://localhost:3000/dist/",
     port: 3000,
     hot: true,
     open: true, //自动打开浏览器
