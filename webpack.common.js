@@ -18,7 +18,7 @@ module.exports = {
                     !/\.vue\.js/.test(file)
                 ),
                 use: [
-                    // "thread-loader",// 多线程编译，可能会导致报错
+                    "thread-loader",// 多线程编译，可能会导致报错
                     {
                         loader: 'babel-loader',
                         options: {
@@ -67,7 +67,7 @@ module.exports = {
                 loader: 'vue-loader',
                 options: {
                     use: [
-                        // "thread-loader",// 多线程编译，可能会导致报错
+                        "thread-loader",// 多线程编译，可能会导致报错
                         {
                             loader: 'babel-loader',
                             options: {
@@ -98,6 +98,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: name,
             favicon: path.resolve(__dirname, "public/favicon.ico"),
+            template: path.resolve(__dirname, "public/index.html")
         }),
         // 打包时生成一个index.html，需要在entry配置入口DOM，例：
         // if (!document.getElementById("root")) {
