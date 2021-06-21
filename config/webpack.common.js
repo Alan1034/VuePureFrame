@@ -1,6 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
-const defaultSettings = require('./settings.js')
+const defaultSettings = require('../settings.js')
 const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -82,12 +82,12 @@ module.exports = {
     resolve: {
         extensions: ['\*', '.js', '.jsx', '.vue'], // 能够使用户在引入模块时不带扩展
         alias: {
-            "@": path.resolve(__dirname, 'src'),
+            "@": path.resolve(__dirname, '../src'),
             'vue$': 'vue/dist/vue.esm-bundler.js'
         },
     },
     output: {
-        path: path.join(__dirname, "/dist/"),
+        path: path.join(__dirname, "../dist/"),
         filename: "bundle.js"
     },
 
@@ -96,8 +96,8 @@ module.exports = {
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             title: name,
-            favicon: path.resolve(__dirname, "public/favicon.ico"),
-            template: path.resolve(__dirname, "public/index.html"),
+            favicon: path.resolve(__dirname, "../public/favicon.ico"),
+            template: path.resolve(__dirname, "../public/index.html"),
         }),
         // 打包时生成一个index.html，需要在entry配置入口DOM，例：
         // if (!document.getElementById("root")) {
