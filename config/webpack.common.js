@@ -49,16 +49,18 @@ module.exports = {
             use: {
                 loader: 'file-loader',
                 options: {
-                    outputPath: 'fonts/'
+                    outputPath: 'fonts/',
+                    esModule: false
                 }
             }
         },
         {
-            test: /\.(png|jpg|gif|svg)$/,
+            test: /\.(png|jpg|gif)$/,
             use: {
                 loader: 'file-loader',
                 options: {
-                    outputPath: 'assets/'
+                    outputPath: 'assets/',
+                    esModule: false
                 }
             }
         },
