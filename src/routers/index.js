@@ -1,23 +1,24 @@
-import { createRouter, createWebHistory  } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import { routersLibrary } from "./configure.json";
 import Home from "../views/Home";
+import Layout from "@/layouts/MainLayout.vue";
 const NotFoundComponent = { template: '<p>Page not found</p>' }
 
 /**
  * 写在views下的index.vue文件会自动匹配到路径,去隔壁configure.json配置下信息就能自动展示了
  */
 
- const ctx = require.context('../views/', true, /\index.vue$/)
- const map = {}
- for (const key of ctx.keys()) {
-   const keyArr = key.split('/')
-   keyArr.shift() // 移除. 
-   const way = keyArr.join('/').replace(/\/index.vue$/g, '') // 生成路由路径
-   if (way) {
-     map[way] = ctx(key).default
-   }
- }
- 
+const ctx = require.context('../views/', true, /\index.vue$/)
+const map = {}
+for (const key of ctx.keys()) {
+  const keyArr = key.split('/')
+  keyArr.shift() // 移除. 
+  const way = keyArr.join('/').replace(/\/index.vue$/g, '') // 生成路由路径
+  if (way) {
+    map[way] = ctx(key).default
+  }
+}
+
 const routes = [
   { path: '/home', component: Home },
   { path: '/', component: Home },
@@ -67,7 +68,7 @@ const filterRouters = (arr, child) => {
 
 const routerArr = filterRouters(routersLibrary);
 routes.push(...routerArr)
-
+console.log(routes)
 const routers = createRouter({
   // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
   history: createWebHistory(),
