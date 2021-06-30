@@ -89,6 +89,7 @@ module.exports = {
     },
     //why:https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             title: `Vue Starter`,

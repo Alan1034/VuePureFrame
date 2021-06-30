@@ -1,6 +1,5 @@
 const path = require("path");
 const { merge } = require('webpack-merge');
-const webpack = require("webpack");
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
@@ -13,5 +12,4 @@ module.exports = merge(common, {
     open: true, //自动打开浏览器
     // host: '0.0.0.0',//开启项目本地服务
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
 });
