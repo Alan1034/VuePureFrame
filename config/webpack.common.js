@@ -85,6 +85,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "../dist/"),
+        publicPath: "/",
         filename: "bundle.js"
     },
     //why:https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags
