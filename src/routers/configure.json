@@ -1,0 +1,30 @@
+{
+  "routersLibrary": [
+    {
+      "pathKey": "demo",
+      "path": "/demo",
+      "name": "样例",
+      "icon": "dashboard",
+      "children": [
+        {
+          "pathKey": "demo/demo",
+          "path": "demo",
+          "name": "颜色库子",
+          "icon": "dashboard"
+        },
+        {
+          "pathKey": "demo/demo",
+          "path": "demo",
+          "name": "颜色库女",
+          "icon": "dashboard"
+        }
+      ]
+    },
+    {
+      "pathKey": "colorlibrary",
+      "path": "/colorlibrary",
+      "name": "颜色库",
+      "icon": "dashboard"
+    }
+  ]
+}
