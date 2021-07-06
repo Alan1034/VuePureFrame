@@ -8,7 +8,7 @@ import 'element-plus/lib/theme-chalk/index.css';
 
 // Vue.config.productionTip = false; //阻止启动生产消息，常用作指令。
 
-console.log(process.env.VUE_APP_BASE_API)
+
 
 // new Vue({
 //     // router,
