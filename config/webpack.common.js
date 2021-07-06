@@ -1,14 +1,38 @@
 const path = require("path");
+const fs = require('fs')
 const webpack = require("webpack");
 const defaultSettings = require('../settings.js')
 const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const name = defaultSettings.title || 'Base管理系统' // 标题
 const VUE_APP_BASE_API = process.env.VUE_APP_BASE_API || '/'
+const CURRENT_ENV = process.env.CURRENT_ENV || 'prod'
+
+//自动生成env文件路径，用.env.XXX中的XXX去匹配文件
+const envConfigPath = {};
+const fileDirectory = path.resolve(__dirname, '../')
+if (fs.existsSync(fileDirectory)) {
+    const files = fs.readdirSync(fileDirectory)
+    const env = []
+    files.forEach((item) => {
+        if ((/\.env/.test(item))) {
+            env.push(item)
+        }
+    })
+    env.forEach((item) => {
+        const envName = item.split(".")
+        envConfigPath[envName[2]] = path.resolve(__dirname, `../${item}`)
+    })
+}
+else {
+    console.log(fileDirectory + "  Not Found!");
+}
 
 module.exports = {
     name,
+    // target: 'node',
     entry: "./src/index.js",
     module: {
         rules: [{
@@ -95,6 +119,9 @@ module.exports = {
     },
 
     plugins: [
+        new Dotenv({
+            path: envConfigPath[CURRENT_ENV],
+        }),
         new webpack.HotModuleReplacementPlugin(),
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
