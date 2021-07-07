@@ -13,8 +13,8 @@ master for desktop
 vue+vue-router+element分支，一个加入了路由和ele布局的分支,后续继续更新了一些便于开发的配置
 vue+vue-router+element a branch with vue-router and element.js layouts, some easy for develop update has come
 
-用.env文件和package.json文件去修改项目环境变量
-use file .env and package.json to modify environment variables
+vue+vue-router+element分支中用.env文件和package.json文件去修改项目环境变量
+In vue+vue-router+element branch we use file .env and package.json to modify environment variables
 
 来源：公司的框架是基于Vue2和vue/cli去搭建的，其中vue/cli封装的部分使用者无法接触到。遂在react脚手架的基础上改造了一个Vue3的脚手架。有以下优点：
 
