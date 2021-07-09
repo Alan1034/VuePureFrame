@@ -4,10 +4,10 @@ const webpack = require("webpack");
 const defaultSettings = require('../settings.js')
 const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const dotenv = require('dotenv')
 const Dotenv = require('dotenv-webpack');
 
 const name = defaultSettings.title || 'Base管理系统' // 标题
-const VUE_APP_BASE_API = process.env.VUE_APP_BASE_API || '/'
 const CURRENT_ENV = process.env.CURRENT_ENV || 'prod'
 
 //自动生成env文件路径，用.env.XXX中的XXX去匹配文件
@@ -28,6 +28,12 @@ if (fs.existsSync(fileDirectory)) {
 }
 else {
     console.log(fileDirectory + "  Not Found!");
+}
+
+//写在.env文件内的变量并没有被打包前的webpack读取到，在webpack内使用需要手动加入环境变量
+const envConfig = dotenv.parse(fs.readFileSync(envConfigPath[CURRENT_ENV]))
+for (const k in envConfig) {
+    process.env[k] = envConfig[k]
 }
 
 module.exports = {
@@ -137,7 +143,6 @@ module.exports = {
         // }
         // 配置：https://github.com/jantimon/html-webpack-plugin#options
         new webpack.DefinePlugin({
-            'process.env.VUE_APP_BASE_API': JSON.stringify(VUE_APP_BASE_API),
             '__VUE_OPTIONS_API__': true,
             '__VUE_PROD_DEVTOOLS__': false,
         })
