@@ -25,6 +25,12 @@
       "path": "/colorlibrary",
       "name": "颜色库",
       "icon": "dashboard"
+    },
+    {
+      "pathKey": "fashionslibrary",
+      "path": "/fashionslibrary",
+      "name": "款式库",
+      "icon": "dashboard"
     }
   ]
 }
