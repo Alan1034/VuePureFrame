@@ -55,7 +55,7 @@ export default {
     },
     total: {
       type: Number,
-      default: 10,
+      default: 0,
     },
     size: {
       type: String,

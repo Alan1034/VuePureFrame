@@ -145,7 +145,7 @@ export default {
           address: "上海市普陀区金沙江路 1518 弄",
         },
       ], //表格内容
-      total: 10, //表格总条数
+      total: 7, //表格总条数
     };
   },
   created() {
