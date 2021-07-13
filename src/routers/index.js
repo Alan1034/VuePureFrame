@@ -41,6 +41,7 @@ const filterRouters = (arr, child) => {
     if (!children && !child) { //单层路由
       returnArray.push({
         ...baseInfo,
+        redirect: path,
         component: Layout,
         children: [
           {
