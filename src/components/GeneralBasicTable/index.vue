@@ -11,7 +11,7 @@
 
 数据格式样例： tableColumn: [ { key: 1, type: "selection", width: "55" }, { key:
 2, prop: "name", label: "款式序号" }, { key: 3, prop: "name", label: "款式图片"
-}, { key: 99, label: "操作", template: (scope) => { return `${scope.row.name}`;
+}, { key: 99, label: "操作", template: (scope) => { return `${scope.row.name}`;//目前只能返回字符串
 }, }, ] */
 <template>
   <el-table v-loading="loading" :data="tableList" :size="size">
@@ -69,7 +69,6 @@ export default {
       // const { page = this.pageNum, limit = this.pageSize } = params;
       const { page = this.pageNum, limit = this.pageSize } = params;
       // this.loading = true;
-      console.log(this.$router);
       this.$router.push({ query: { page, limit } });
       // listOrder(this.queryParams).then((response) => {
       //   this.orderList = response.data;

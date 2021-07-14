@@ -10,6 +10,7 @@
       :formItem="formItem"
       :size="size"
     />
+    <div :style="{ height: 15 + 'px' }" />
     <!-- 页面和表格操作 -->
     <el-row :gutter="10" class="handle">
       <el-col :span="1.5">
@@ -73,7 +74,6 @@
 </template>
 
 <script>
-import { createApp, h } from "vue";
 import GeneralBasicForm from "@/components/GeneralBasicForm";
 import GeneralBasicTable from "@/components/GeneralBasicTable";
 export default {
