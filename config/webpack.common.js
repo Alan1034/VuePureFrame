@@ -112,10 +112,12 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['\*', '.js', '.jsx', '.vue'], // 能够使用户在引入模块时不带扩展
+        extensions: ['\*', '.js', '.jsx', '.vue'], // 具有相同文件名不同扩展名时使用第一个而跳过其他
+        symlinks: false, //在yarn link 入其他模块的时候统一使用同一个vue引用，避免vue3的一个报错
         alias: {
             "@": path.resolve(__dirname, '../src'),
-            'vue$': 'vue/dist/vue.esm-bundler.js'
+            'vue$': 'vue/dist/vue.esm-bundler.js',
+            vue: path.resolve(__dirname, `../node_modules/vue`) // 定义vue路径
         },
     },
     output: {
