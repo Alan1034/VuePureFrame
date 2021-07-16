@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "cross-env CURRENT_ENV=dev webpack-dev-server --config config/webpack.dev.js",
-    "build": "cross-env CURRENT_ENV=pord webpack --config config/webpack.prod.js",
+    "build": "cross-env CURRENT_ENV=prod webpack --config config/webpack.prod.js",
     "build:test": "cross-env CURRENT_ENV=test webpack --config config/webpack.prod.js"
   },
   "devDependencies": {
