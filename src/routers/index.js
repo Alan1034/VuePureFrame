@@ -1,7 +1,18 @@
+/*
+ * @Author: 陈德立*******419287484@qq.com
+ * @Date: 2021-07-16 11:35:05
+ * @LastEditTime: 2021-08-06 17:26:53
+ * @LastEditors: 陈德立*******419287484@qq.com
+ * @Github: https://github.com/Alan1034
+ * @Description: 
+ * @FilePath: \VuePureFrame\src\routers\index.js
+ * 
+ */
 import { createRouter, createWebHistory } from 'vue-router'
 import { routersLibrary } from "./configure.json";
-import Home from "../views/Home";
-import Layout from "@/layouts/MainLayout.vue";
+const Home = () => import("../views/Home")
+/* Layout */
+const Layout = () => import("@/layouts/MainLayout.vue")
 const NotFoundComponent = { template: '<p>Page not found</p>' }
 
 /**
@@ -28,21 +39,24 @@ const routes = [
 const filterRouters = (arr, child) => {
   const returnArray = []
   arr.forEach((item) => {
-    const { pathKey, name, icon, children, path } = item;
+    const { pathKey, name, icon, children, path, hidden, meta } = item;
     const baseInfo = {
       path,
       name: path,
-      component: map[pathKey] || Layout,
+      component: () => Promise.resolve( //路由懒加载(动态导入)
+        map[pathKey] || Layout,
+      ),
       // redirect: children ? "noRedirect" : "", // 项目自定义属性
       // alwaysShow: children ? true : false,   // 项目自定义属性
-      meta: { title: name, icon, noCache: true, affix: true },
+      meta: { noCache: true, affix: false, ...meta, title: name, icon, }, //affix设置标签是否不可关闭,项目自定义属性
+      hidden: hidden ? true : false
     }
 
     if (!children && !child) { //单层路由
       returnArray.push({
         ...baseInfo,
-        redirect: path,
         component: Layout,
+        redirect: path,
         children: [
           {
             ...baseInfo,
@@ -66,7 +80,6 @@ const filterRouters = (arr, child) => {
   })
   return returnArray;
 }
-
 const routerArr = filterRouters(routersLibrary);
 routes.push(...routerArr)
 

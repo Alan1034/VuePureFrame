@@ -1,125 +1,101 @@
-/** 通用基本表单。用在表单页面搜索栏 */
+/** 通用表格组件 使用方法：
+现已封装成独立组件，详见https://www.npmjs.com/package/general-basic-table
+<GeneralBasicTable
+  :getList="getList"
+  :tableList="tableList"
+  :total="total"
+  :tableColumn="tableColumn"
+  :size="size"
+>
+     ...一些传入插槽的内容
+</GeneralBasicTable>
+
+数据格式样例： tableColumn: [ { key: 1, type: "selection", width: "55" }, { key:
+2, prop: "name", label: "款式序号" }, { key: 3, prop: "name", label: "款式图片"
+}, { key: 4, prop: "name", label: "款式名称" },{ key: 99, label: "操作", render:
+(scope) => { const { name = "按钮" } = scope.row; return
+<ElButton>{name}</ElButton>
+; }, }, ] */
 <template>
-  <el-form
-    :model="queryParams"
-    ref="queryFormRef"
-    v-show="showSearch"
-    inline
-    label-position="left"
-    :label-width="labelWidth"
-  >
-    <el-form-item
-      v-for="item in formItem"
-      :label="item.label"
-      :prop="item.prop"
-      :key="item.prop"
+  <el-table v-loading="loading" :data="tableList" :size="size">
+    <el-table-column
+      v-for="column in tableColumn"
+      :key="column.key"
+      v-bind="column"
     >
-      <el-input
-        v-if="item.type === 'input'"
-        @keydown.enter="getList"
-        v-model="queryParams[item.prop]"
-        :size="size"
-        v-bind="inputSetting"
-      ></el-input>
-      <el-select
-        v-else-if="item.type === 'select'"
-        v-model="queryParams[item.prop]"
-        :size="size"
-        v-bind="selectSetting"
-      >
-        <el-option
-          v-for="dict in item.option || []"
-          :key="dict.value"
-          :label="dict.desc"
-          :value="dict.value"
-        />
-      </el-select>
-    </el-form-item>
-    <el-form-item>
-      <el-button
-        type="primary"
-        icon="el-icon-search"
-        :size="size"
-        @click="handleQuery"
-        >查询</el-button
-      >
-      <el-button icon="el-icon-refresh" :size="size" @click="resetQuery"
-        >重置</el-button
-      >
-    </el-form-item>
-  </el-form>
+      <template #default="scope" v-if="column.render">
+        <!-- 第一种方法，定义一个标签和一个组件 -->
+        <component
+          :is="currentTabComponent(column, scope)"
+          :column="column"
+          :scope="scope"
+        >
+        </component>
+        <!-- 第二种方法，传入一个组件 -->
+        <TableColumn :column="column" :scope="scope" />
+      </template>
+    </el-table-column>
+    <slot></slot>
+  </el-table>
+  <pagination
+    v-show="total > 0"
+    :total="total"
+    :current-page="pageNum"
+    :page-size="pageSize"
+    @pagination="handleSearch"
+  />
 </template>
 
 <script>
+import TableColumn from "./tableColumn";
 export default {
-  name: "GeneralBasicForm",
-  props: {
-    showSearch: {
-      type: Boolean,
-      default: true,
-    },
-    getList: {
-      type: Function,
-      default: () => {},
-    },
-    formItem: {
-      type: Array,
-      default: [],
-    },
-    size: {
-      // 控制按钮大小
-      type: String,
-      default: "medium",
+  name: "GeneralBasicTable",
+  components: {
+    TableColumn,
+    TabArchive: (props) => {
+      const { column, scope } = props;
+      return column.render(scope);
     },
   },
   data() {
     return {
-      queryParams: {},
-      selectSetting: {
-        placeholder: "请选择",
-        clearable: true,
-        style: "width: 200px",
-      },
-      inputSetting: {
-        placeholder: "请输入",
-        style: "width: 200px",
-        clearable: true,
-      },
-      labelWidth: "90px",
+      pageNum: Number(this.$route.query.page) || 1,
+      pageSize: Number(this.$route.query.limit) || 10,
     };
   },
-  // setup(props) {
-  //设置默认值
-  //   console.log(props);
-  //   // const { formItem } = toRefs(props);
-  //   const { formItem } = props;
-  //   console.log(formItem);
-  //   const queryParams = {};
-  //   formItem.forEach((item) => {
-  //     queryParams[item.prop] = "";
-  //   });
-  //   return {
-  //     queryParams,
-  //   };
-  // },
-  methods: {
-    /** 搜索按钮操作 */
-    handleQuery() {
-      this.getList(1);
+  props: {
+    tableList: {
+      type: Array,
+      default: [],
     },
-    /** 重置按钮操作 */
-    resetQuery() {
-      this.$refs.queryFormRef.resetFields();
-      this.handleQuery();
+    tableColumn: {
+      type: Array,
+      default: [],
+    },
+    total: {
+      type: Number,
+      default: 0,
+    },
+    size: {
+      type: String,
+      default: "medium",
+    },
+  },
+  methods: {
+    /** 查询列表 */
+    handleSearch(params = {}) {
+      console.log(params);
+      const { page = this.pageNum, limit = this.pageSize } = params;
+      // this.loading = true;
+      console.log(this.$router);
+      this.$router.push({ query: { page, limit } });
+      this.getList(params);
+    },
+    currentTabComponent(column, scope) {
+      return "tab-archive";
     },
   },
 };
 </script>
 
-<style lang="scss" scoped>
-:deep {
-  .el-form-item {
-    margin-bottom: 3px;
-  }
-}
-</style>
+<style></style>
