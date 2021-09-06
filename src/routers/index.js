@@ -1,14 +1,14 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2021-07-16 11:35:05
- * @LastEditTime: 2021-08-06 17:26:53
+ * @LastEditTime: 2021-09-06 15:33:51
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description: 
  * @FilePath: \VuePureFrame\src\routers\index.js
  * 
  */
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory,createWebHashHistory } from 'vue-router'
 import { routersLibrary } from "./configure.json";
 const Home = () => import("../views/Home")
 /* Layout */
@@ -85,7 +85,8 @@ routes.push(...routerArr)
 
 const routers = createRouter({
   // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
-  history: createWebHistory(),
+  // history: createWebHistory(),
+  history: createWebHashHistory(), //为了在github服务上展示，使用hashRouter
   routes, // `routes: routes` 的缩写
 })
 // const Router = new VueRouter({

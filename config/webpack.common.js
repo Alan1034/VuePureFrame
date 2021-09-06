@@ -122,7 +122,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "../dist/"),
-        publicPath: "/",
+        publicPath: "./", //配置相对路径
         filename: "bundle.js"
     },
 
