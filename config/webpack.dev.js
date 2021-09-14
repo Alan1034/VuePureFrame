@@ -7,8 +7,9 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   devServer: {
     // host: '0.0.0.0',
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, "public"),
     port: 3000,
+    publicPath: "http://localhost",
     hot: true,
     open: true, //自动打开浏览器
     historyApiFallback: true, // 使用H5路由需要配置

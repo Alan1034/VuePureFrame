@@ -123,7 +123,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "../dist/"),
         publicPath: "./", //配置相对路径
-        filename: "bundle.js"
+        filename: "bundle.[hash].js" //文件名为bundle+hash值，方便配置全站加速
     },
 
     plugins: [
