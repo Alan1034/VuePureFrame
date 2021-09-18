@@ -122,7 +122,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "../dist/"),
-        publicPath: "./", //配置相对路径
+        publicPath: "./", //配置相对路径,如果使用服务器打开需要使用/，表示在引入静态资源时，从根路径开始引入，如果使用本地打开需要使用绝对路径./
         filename: "bundle.[hash].js" //文件名为bundle+hash值，方便配置全站加速
     },
 
