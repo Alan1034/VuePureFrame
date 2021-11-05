@@ -57,7 +57,11 @@ module.exports = {
                 }
             ],
         },
-
+        {
+            test: /\.mjs$/,
+            include: /node_modules/,
+            type: "javascript/auto"
+        },
         {
             test: /\.css$/,
             use: ['vue-style-loader', 'css-loader']
