@@ -1,9 +1,6 @@
-import Vue from 'vue';
-import { h, createApp } from 'vue'
-import App from './App.vue';
-// import router from './router';
-// import store from './store';
-import './global.css';
+import { createApp } from 'vue'
+import App from "./App";
+import routers from './routers';
 
 // Vue.use(Public);
 
@@ -16,4 +13,11 @@ import './global.css';
 //     // store,
 //     render: () => h(App),
 // }).$mount('#root');
-createApp(App).mount('#root')
+if (!document.getElementById("root")) {
+    const div = document.createElement('div');
+    div.id = "root";
+    document.body.appendChild(div);
+}
+const app = createApp(App)
+app.use(routers)
+app.mount('#root')

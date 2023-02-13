@@ -28,3 +28,6 @@ In vue+vue-router+element branch we use file .env and package.json to modify env
 
 （5）纯净极简，可正常开发打包，可配置性强
 
+（6）根据文件夹和配置文件自动生成系统路由
+
+[DEMO](dist/index.html)
