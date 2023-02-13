@@ -1,23 +1,23 @@
-<template>
-  <el-menu
-    :default-active="activeIndex"
-    class="el-menu-demo"
-    mode="horizontal"
-    @select="handleSelect"
-  >
-    <el-menu-item index="1">处理中心</el-menu-item>
-    <el-menu-item index="2">消息中心</el-menu-item>
-  </el-menu>
-</template>
+<!--
+ * @Author: 陈德立*******419287484@qq.com
+ * @Date: 2023-02-13 17:02:16
+ * @LastEditTime: 2023-02-13 17:20:26
+ * @LastEditors: 陈德立*******419287484@qq.com
+ * @Github: https://github.com/Alan1034
+ * @Description: 
+ * @FilePath: \VuePureFrame\src\layouts\HeaderMenu.vue
+ * 
+-->
+<template>处理中心</template>
 
 <script>
 export default {
   props: {
-      activeIndex: String
+    activeIndex: String,
   },
   methods: {
     handleSelect(key, keyPath) {
-      this.$emit('update:activeIndex',key)
+      this.$emit("update:activeIndex", key);
     },
   },
 };

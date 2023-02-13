@@ -1,29 +1,14 @@
-<template>
-  <transition name="el-zoom-in-center">
-    <el-menu
-      v-if="activeIndex === '1'"
-      default-active="/home"
-      class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose"
-      router
-    >
-      <el-menu-item index="/home">
-        <i class="el-icon-menu"></i>
-        <template #title> 导航1 </template>
-      </el-menu-item>
-      <el-menu-item index="/">
-        <i class="el-icon-document"></i>
-        <template #title> 导航2 </template>
-      </el-menu-item>
-      <el-menu-item index="3">
-        <i class="el-icon-setting"></i>
-        <template #title>导航3</template>
-      </el-menu-item>
-    </el-menu>
-  </transition>
-  <el-empty v-if="activeIndex !== '1'" description=""></el-empty>
-</template>
+<!--
+ * @Author: 陈德立*******419287484@qq.com
+ * @Date: 2023-02-13 17:02:16
+ * @LastEditTime: 2023-02-13 17:20:05
+ * @LastEditors: 陈德立*******419287484@qq.com
+ * @Github: https://github.com/Alan1034
+ * @Description: 
+ * @FilePath: \VuePureFrame\src\layouts\AsideMenu.vue
+ * 
+-->
+<template>导航1</template>
 
 <script>
 export default {
