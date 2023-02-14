@@ -9,9 +9,11 @@
  * 
 -->
 <template>
-  <router-link to="/home">HOME</router-link>
-  <br />
-  <router-link to="/colorlibrary">colorlibrary</router-link>
+  <p>
+    <router-link to="/home">HOME</router-link>
+    <br />
+    <router-link to="/colorlibrary">colorlibrary</router-link>
+  </p>
 </template>
 
 <script>
