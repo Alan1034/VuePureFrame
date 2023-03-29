@@ -1,5 +1,6 @@
-import { defineConfig, splitVendorChunkPlugin, loadEnv } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig, splitVendorChunkPlugin, loadEnv } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 import path from 'path';
 const resolve = (dir) => path.resolve(__dirname, dir);
 // https://vitejs.dev/config/
@@ -18,7 +19,12 @@ export default defineConfig(({ command, mode }) => {
       "CURRENT_ENV": JSON.stringify(env.CURRENT_ENV),
     },
 
-    plugins: [vue(), splitVendorChunkPlugin()],
+    plugins: [
+      vue(),
+      splitVendorChunkPlugin(),
+      vueJsx({
+        // options are passed on to @vue/babel-plugin-jsx
+      }),],
     server: {
       open: true,
     },

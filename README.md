@@ -30,4 +30,11 @@ In vue+vue-router+element branch we use file .env and package.json to modify env
 
 （6）根据文件夹和配置文件自动生成系统路由
 
+vue3+vite 分支
+vue3+vite branch
+
+打包工具设置为vite，对比webpack速度和集成度上有显著提升，带来流畅的开发体验
+
+The packaging tool is set to vite, which significantly improves the speed and integration of webpack, bringing a smooth development experience
+
 [DEMO](dist/index.html)
