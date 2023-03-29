@@ -74,8 +74,8 @@
 </template>
 
 <script>
-import GeneralBasicForm from "@/components/GeneralBasicForm";
-import GeneralBasicTable from "@/components/GeneralBasicTable";
+import GeneralBasicForm from "@/components/GeneralBasicForm/index.vue";
+import GeneralBasicTable from "@/components/GeneralBasicTable/index.vue";
 export default {
   name: "fashionslibrary",
   components: { GeneralBasicForm, GeneralBasicTable },

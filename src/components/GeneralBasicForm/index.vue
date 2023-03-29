@@ -1,4 +1,4 @@
-/** 通用表格组件 使用方法：
+<!-- /** 通用表格组件 使用方法：
 现已封装成独立组件，详见https://www.npmjs.com/package/general-basic-table
 <GeneralBasicTable
   :getList="getList"
@@ -15,7 +15,7 @@
 }, { key: 4, prop: "name", label: "款式名称" },{ key: 99, label: "操作", render:
 (scope) => { const { name = "按钮" } = scope.row; return
 <ElButton>{name}</ElButton>
-; }, }, ] */
+; }, }, ] */ -->
 <template>
   <el-table v-loading="loading" :data="tableList" :size="size">
     <el-table-column

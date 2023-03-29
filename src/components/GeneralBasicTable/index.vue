@@ -1,4 +1,4 @@
-/** 通用表格组件 使用方法：
+<!-- /** 通用表格组件 使用方法：
 <GeneralBasicTable
   :getList="getList"
   :tableList="tableList"
@@ -12,7 +12,7 @@
 数据格式样例： tableColumn: [ { key: 1, type: "selection", width: "55" }, { key:
 2, prop: "name", label: "款式序号" }, { key: 3, prop: "name", label: "款式图片"
 }, { key: 99, label: "操作", template: (scope) => { return `${scope.row.name}`;//目前只能返回字符串
-}, }, ] */
+}, }, ] */ -->
 <template>
   <el-table v-loading="loading" :data="tableList" :size="size">
     <el-table-column

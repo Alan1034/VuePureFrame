@@ -1,11 +1,12 @@
 <template>
-   <aside-menu v-model:activeIndex="activeIndex" />
-   <header-menu v-model:activeIndex="activeIndex" />
+  <aside-menu v-model:activeIndex="activeIndex" />
+  <header-menu v-model:activeIndex="activeIndex" />
+  <slot />
 </template>
 
 <script>
-import HeaderMenu from "./HeaderMenu";
-import AsideMenu from "./AsideMenu";
+import HeaderMenu from "./HeaderMenu.vue";
+import AsideMenu from "./AsideMenu.vue";
 
 export default {
   data() {
@@ -20,5 +21,4 @@ export default {
 </script>
 
 <style>
-
 </style>

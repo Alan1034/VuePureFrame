@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
-import App from "./App";
-import routers from './routers';
+import App from "./App.vue";
+import routers from './routers/index.js';
 
 // Vue.use(Public);
 

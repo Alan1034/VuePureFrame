@@ -1,9 +1,14 @@
 <template>
-  <div>HELLO MY FRIEND</div>
+  <main-layout> HELLO MY FRIEND </main-layout>
 </template>
 
 <script>
-export default {};
+import MainLayout from "@/layouts/MainLayout.vue";
+export default {
+  components: {
+    MainLayout,
+  },
+};
 </script>
 
 <style></style>

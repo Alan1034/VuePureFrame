@@ -24,7 +24,7 @@
       ]
     },
     {
-      "pathKey": "colorlibrary",
+      "pathKey": "../views/colorlibrary/index.vue",
       "path": "/colorlibrary",
       "name": "颜色库",
       "icon": "dashboard",

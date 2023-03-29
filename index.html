@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <!-- sourced from https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html -->
 <!DOCTYPE html>
 <html>
@@ -7,10 +9,14 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <script type="module">
+      console.log( import.meta.env )
+    </script>
+    <title>%VITE_APP_NAME%</title>
   </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/src/index.js"></script>
     <noscript> You need to enable JavaScript to run this app. </noscript>
   </body>
 </html>
