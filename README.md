@@ -16,25 +16,32 @@ vue+vue-router+element a branch with vue-router and element.js layouts, some eas
 vue+vue-router+element分支中用.env文件和package.json文件去修改项目环境变量
 In vue+vue-router+element branch we use file .env and package.json to modify environment variables
 
-来源：公司的框架是基于Vue2和vue/cli去搭建的，其中vue/cli封装的部分使用者无法接触到。遂在react脚手架的基础上改造了一个Vue3的脚手架。有以下优点：
+vue3+vite 分支打包工具设置为vite，对比webpack速度和集成度上有显著提升，带来流畅的开发体验
+vue3+vite branch branch The packaging tool is set to vite, which significantly improves the speed and integration of webpack, bringing a smooth development experience
+
+
+
+来源：改造而来的一个Vue3的脚手架。有以下优点：
 
 （1）编译和依赖更新到新版本，使用Vue3
 
 （2）兼容less和scss，兼容字体文件
 
-（3）优化打包的tree-shaking问题
+（3）优化打包的体积问题，支持gzip和代码图片的压缩和加密
 
-（4）多线程编译打包
+（4）浏览器兼容性良好
 
 （5）纯净极简，可正常开发打包，可配置性强
 
 （6）根据文件夹和配置文件自动生成系统路由
 
-vue3+vite 分支
-vue3+vite branch
+vue3+vite+typescript 分支
+vue3+vite+typescript branch
 
-打包工具设置为vite，对比webpack速度和集成度上有显著提升，带来流畅的开发体验
+添加TS等插件的支持，集成包括自动更新package.json的版本信息，代码压缩加密，兼容旧版浏览器等功能
 
-The packaging tool is set to vite, which significantly improves the speed and integration of webpack, bringing a smooth development experience
+Add support for TS and other plugins, integrating features such as automatic update of package. json version information, code compression and encryption, compatibility with older browsers, and more
+
+
 
 [DEMO](dist/index.html)
