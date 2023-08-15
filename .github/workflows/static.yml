@@ -22,12 +22,14 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
-  deploy:
+  # 任务ID
+  build-and-deploy:
+    # 运行环境
     runs-on: ubuntu-latest
-      steps:
-            # 官方action，将代码拉取到虚拟机
-      - name: Checkout
+    # 步骤
+    steps:
+      # 官方action，将代码拉取到虚拟机
+      - name: Checkout  ️ 
         uses: actions/checkout@v3
       - name: Set up Node
         uses: actions/setup-node@v3
