@@ -30,4 +30,4 @@ coverage
 test-results/
 playwright-report/
 
-package-lock.json
+# package-lock.json 增加package-lock以配置流水線打包
