@@ -26,6 +26,7 @@ export default defineConfig(({ command, mode }) => {
     },
 
     server: {
+      base:"/VuePureFrame/", // 部署在GitHub Pages需要加上base，詳見：https://cn.vitejs.dev/guide/static-deploy.html#github-pages
       open: true,
       // proxy: {
       //   '/now': {

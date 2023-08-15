@@ -1,7 +1,7 @@
 <!--
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2023-02-13 17:02:16
- * @LastEditTime: 2023-02-14 11:33:41
+ * @LastEditTime: 2023-08-15 17:52:54
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description: 
@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import { RouterLink } from "vue-router";
+// import { RouterLink } from "vue-router";
 export default {
-  props: {
-    // 如果使用 TypeScript，请添加 @ts-ignore
-    ...RouterLink.props,
-  },
+  // props: {
+  //   // 如果使用 TypeScript，请添加 @ts-ignore
+  //   ...RouterLink.props,
+  // },
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
