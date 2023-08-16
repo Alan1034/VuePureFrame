@@ -1,0 +1,1 @@
+import o from"./MainLayout-chunk-56e69d6.js";import{_ as a}from"./index-app-e6a9a06.js";import{r as n,o as t,c as r,w as s,e}from"./vendor-chunk-3533185.js";const u=a({components:{MainLayout:o}},[["render",function(o,a,u,i,m,c){const p=n("main-layout");return t(),r(p,null,{default:s((()=>[e(" HELLO MY FRIEND ")])),_:1})}]]);export{u as default};
