@@ -140,7 +140,7 @@ export default defineConfig(({ command, mode }) => {
      * @return {*}
      */
     build: {
-      minify: 'terser',
+      // minify: 'terser',
       //打包环境移除console.log，debugger
       // terserOptions: {
       //   compress: {
@@ -148,14 +148,14 @@ export default defineConfig(({ command, mode }) => {
       //     drop_debugger: true,
       //   },
       // },
-      //打包文件按照类型分文件夹显示
-      rollupOptions: {
-        output: {
-          chunkFileNames: 'js/[name]-chunk-[hash:7].js',
-          entryFileNames: 'js/[name]-app-[hash:7].js',
-          assetFileNames: '[ext]/[name]-chunk-[hash:7].[ext]',
-        },
-      },
+      //打包文件按照类型分文件夹显示（貌似会导致性能下降）
+      // rollupOptions: {
+      //   output: {
+      //     chunkFileNames: 'js/[name]-chunk-[hash:7].js',
+      //     entryFileNames: 'js/[name]-app-[hash:7].js',
+      //     assetFileNames: '[ext]/[name]-chunk-[hash:7].[ext]',
+      //   },
+      // },
     },
   }
 })
