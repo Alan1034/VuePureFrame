@@ -44,4 +44,4 @@ Add support for TS and other plugins, integrating features such as automatic upd
 
 
 
-[DEMO](dist/index.html)
+[DEMO](https://alan1034.github.io/VuePureFrame/)
