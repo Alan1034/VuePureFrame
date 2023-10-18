@@ -1,0 +1,1 @@
+import t from"./MainLayout-5f5f4f04.js";import{_ as e}from"./index-a007447e.js";import{r as a,o as n,c as r,w as s,e as c}from"./vendor-d55e15f5.js";const m={components:{MainLayout:t}};function p(_,i,f,l,u,d){const o=a("main-layout");return n(),r(o,null,{default:s(()=>[c(" Home ")]),_:1})}const h=e(m,[["render",p]]);export{h as default};

@@ -1,0 +1,1 @@
+import t from"./MainLayout-5f5f4f04.js";import{_ as e}from"./index-a007447e.js";import{r as n,o as a,c as r,w as s,e as c}from"./vendor-d55e15f5.js";const p={components:{MainLayout:t}};function _(m,i,f,l,u,d){const o=n("main-layout");return a(),r(o,null,{default:s(()=>[c(" HELLO MY FRIEND ")]),_:1})}const L=e(p,[["render",_]]);export{L as default};
