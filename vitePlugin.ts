@@ -40,7 +40,7 @@ export function updateVersion() {
       // const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
       //每次打包构建代码，自动更新版本号，同一天加1，隔天自动回归变成 1 。例如{ 今天：1.20200917.3，第二天：1.20200918.1 }
       try {
-        function AddZero(time: any) {
+        const AddZero = (time: any) => {
           if (time < 10) {
             return "0" + time
           } else {
@@ -48,19 +48,19 @@ export function updateVersion() {
           }
         }
         //指出我们要将信息写入到哪里
-        let packageTxt = fs.readFileSync(path.join(__dirname, './package.json'), 'utf8');
-        let versionData = packageTxt.split('\n');
-        let packageJson = JSON.parse(packageTxt);
-        let VersionArr = packageJson.version.split('.');
-        let date = new Date();
-        let today = date.getFullYear() + "" + AddZero((date.getMonth() + 1)) + "" + AddZero(date.getDate())
+        const packageTxt = fs.readFileSync(path.join(__dirname, './package.json'), 'utf8');
+        const versionData = packageTxt.split('\n');
+        const packageJson = JSON.parse(packageTxt);
+        const VersionArr = packageJson.version.split('.');
+        const date = new Date();
+        const today = date.getFullYear() + "" + AddZero((date.getMonth() + 1)) + "" + AddZero(date.getDate())
         if (today == VersionArr[1]) {
           VersionArr[2] = parseInt(VersionArr[2]) + 1
         } else {
           VersionArr[1] = date.getFullYear() + "" + AddZero((date.getMonth() + 1)) + "" + AddZero(date.getDate())
           VersionArr[2] = 1;
         }
-        let versionLine = VersionArr.join('.');
+        const versionLine = VersionArr.join('.');
         for (let i = 0; i < versionData.length; i++) {
           if (versionData[i].indexOf('"version":') != -1) {
             versionData.splice(i, 1, '  "version": "' + versionLine + '",');

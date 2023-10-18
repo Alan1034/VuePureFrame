@@ -1,6 +1,6 @@
 {
   "name": "vue-pure-frame",
-  "version": "1.20230816.1",
+  "version": "1.20231018.2",
   "scripts": {
     "serve": "cross-env CURRENT_ENV=dev vite",
     "serve:uat": "cross-env CURRENT_ENV=uat vite --mode uat",
@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "chalk": "^2.4.2",
     "less": "^4.1.1",
     "sass": "^1.32.8",
     "vue": "^3.3.4",
