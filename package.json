@@ -1,6 +1,6 @@
 {
   "name": "vue-pure-frame",
-  "version": "1.20231018.2",
+  "version": "1.20231018.3",
   "scripts": {
     "serve": "cross-env CURRENT_ENV=dev vite",
     "serve:uat": "cross-env CURRENT_ENV=uat vite --mode uat",
