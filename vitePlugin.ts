@@ -1,11 +1,11 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2023-08-07 19:12:51
- * @LastEditTime: 2023-08-08 11:03:20
+ * @LastEditTime: 2023-11-06 14:33:54
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
- * @Description: 
- * @FilePath: \heycars_h5\vitePlugin.ts
+ * @Description: 自动更新package.json里的version版本号
+ * @FilePath: \VuePureFrame\vitePlugin.ts
  * 
  */
 import path from "path";
@@ -19,18 +19,27 @@ export function updateVersion() {
     buildStart: async (options: any) => {
       // console.info(options)
       // const Timestamp = new Date().getTime()
+      let gitRevision = {
+        revision:"",
+        branch:""
+      }
       //使用git信息
-      const gitRevision = await new Promise<any>((resolve, reject) => {
-        vizion.analyze({
-          folder: path.join(__dirname, '/')
-        }, function (err: any, meta: any) {
-          if (err) {
-            reject(err)
-            return
-          }
-          resolve(meta)
-        });
-      })
+      try {
+        gitRevision = await new Promise<any>((resolve, reject) => {
+          vizion.analyze({
+            folder: path.join(__dirname, '/')
+          }, function (err: any, meta: any) {
+            if (err) {
+              reject(err)
+              return
+            }
+            resolve(meta)
+          });
+        })
+      } catch (error) {
+        console.log(chalk.yellowBright.bold('还没有git信息，无法更新version版本号', error));
+        return
+      }
       // console.log(gitRevision)                   
       //获取commitId
       const commitId = gitRevision.revision
