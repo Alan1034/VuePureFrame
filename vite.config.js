@@ -1,5 +1,5 @@
 import legacy from '@vitejs/plugin-legacy'
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath } from 'url'
 import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -8,7 +8,9 @@ import { updateVersion } from "./vitePlugin";
 import obfuscatorPlugin from "vite-plugin-javascript-obfuscator";
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import path from 'path';
-const resolve = (dir) => path.resolve(__dirname, dir);
+const __filenameNew = fileURLToPath(import.meta.url)
+const __dirnameNew = path.dirname(__filenameNew)
+const resolve = (dir) => path.resolve(__dirnameNew, dir);
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   // 根据当前工作目录中的 `mode` 加载 .env 文件
