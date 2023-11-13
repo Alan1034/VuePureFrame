@@ -1,11 +1,11 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2023-05-09 17:44:24
- * @LastEditTime: 2023-11-13 17:40:16
+ * @LastEditTime: 2023-11-13 17:32:44
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description: OpenAPI格式(Swagger)文件转化为TS接口文件
- * @FilePath: \VuePureFrame\scripts\syncApi.ts
+ * @FilePath: \deal-front-end\scripts\syncApi.ts
  * 
  */
 import { execSync } from "node:child_process";
@@ -13,7 +13,7 @@ import path from "node:path";
 import { formatFile } from "./lib/format";
 import chalk from 'chalk'
 
-const apiDir = path.resolve(__dirname, "../api");
+const apiDir = path.resolve(__dirname, "../src/api");
 const apiAutoFileName = "api.auto.ts";
 const apiAutoFilePath = path.resolve(apiDir, apiAutoFileName);
 
