@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2021-07-16 11:35:05
- * @LastEditTime: 2023-08-15 17:52:23
+ * @LastEditTime: 2023-11-13 10:22:25
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description: 
@@ -19,7 +19,7 @@ const NotFoundComponent = { template: '<p>Page not found</p>' }
  * 写在views下的index.vue文件会自动匹配到路径,去隔壁configure.json配置下信息就能自动展示了
  */
 
-const modules = import.meta.glob('../views/*/index.vue')
+const modules = import.meta.glob('../views/**/index.vue')
 // console.log(modules)
 // const map = {}
 for (const path in modules) {
