@@ -1,11 +1,11 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2023-05-09 17:44:24
- * @LastEditTime: 2023-11-13 17:32:44
+ * @LastEditTime: 2023-11-15 09:30:17
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description: OpenAPI格式(Swagger)文件转化为TS接口文件
- * @FilePath: \deal-front-end\scripts\syncApi.ts
+ * @FilePath: \VuePureFrame\scripts\syncApi.ts
  * 
  */
 import { execSync } from "node:child_process";
@@ -22,7 +22,8 @@ async function downloadAndGenerateApi(FilePath:string) {
   const swaggerFilePath = path.resolve(apiDir, FilePath);
   try{
     await formatFile(swaggerFilePath, "json");
-    execSync(`sta -p ${swaggerFilePath} -o ${apiDir} -n ${apiAutoFileName} --module-name-index 1`);
+    // bass on swagger-typescript-api
+    execSync(`sta -p ${swaggerFilePath} -o ${apiDir} -n ${apiAutoFileName} --module-name-index 1 -r`);
     formatFile(apiAutoFilePath, "typescript");
     console.log(chalk.green.bold(`Successfully create ${apiAutoFilePath}`));
   }catch (e: any) {
