@@ -9,7 +9,7 @@
  * 
  */
 import type { HttpResponse, RequestParams } from "@/api/api.auto";
-import type { ServerResponseBaseType } from "@/type";
+// import type { ServerResponseBaseType } from "@/api/type";
 interface ApiRequest<P, Data> {
   (props: P, params?: RequestParams): Promise<
     HttpResponse<
@@ -21,7 +21,8 @@ interface ApiRequest<P, Data> {
 // 创建一个request请求
 export function createApiAction<P, S>(apiFn: ApiRequest<P, S>) {
   return async (props: P): Promise<S | undefined> => {
-    let Response: ServerResponseBaseType<S>
+    // let Response: ServerResponseBaseType<S>
+    let Response: any
     try {
       Response = await apiFn(props)
       return Response;
