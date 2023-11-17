@@ -108,7 +108,7 @@ export default defineConfig(({ command, mode }) => {
       * @description: 代码压缩加密
       * @return {*}
       */
-      env.DEV_ENV !== 'testProduction' ? obfuscatorPlugin({
+      env.CURRENT_ENV !== 'dev' ? obfuscatorPlugin({
         include: [// "src/path/to/file.js", "path/anyjs/**/*.js", /foo.js$/
           "src/assets/**",
           "src/api/**",
@@ -123,7 +123,7 @@ export default defineConfig(({ command, mode }) => {
         // debugger: true,
         options: {
           // your javascript-obfuscator options
-          debugProtection: env.DEV_ENV === 'production' ? true : false,
+          debugProtection: env.CURRENT_ENV === 'production' ? true : false,
           // ...  [See more options](https://github.com/javascript-obfuscator/javascript-obfuscator)
         },
       }) : {},
