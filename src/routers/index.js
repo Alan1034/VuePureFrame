@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2021-07-16 11:35:05
- * @LastEditTime: 2023-11-13 10:22:25
+ * @LastEditTime: 2023-11-22 16:34:37
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description: 
@@ -36,7 +36,7 @@ const routes = [
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFoundComponent },
 ]
 
-const filterRouters = (arr, child) => {
+const filterRouters = (arr) => {
   const returnArray = []
   arr.forEach((item) => {
     const { pathKey, name, icon, children, path, hidden, meta } = item;
@@ -51,35 +51,22 @@ const filterRouters = (arr, child) => {
       meta: { noCache: true, affix: false, ...meta, title: name, icon, }, //affix设置标签是否不可关闭,项目自定义属性
       hidden: hidden ? true : false
     }
-    returnArray.push({
-      ...baseInfo,
-
-    })
-    //   if (!children && !child) { //单层路由
-    //     returnArray.push({
-    //       ...baseInfo,
-    //       component: Layout,
-    //       redirect: path,
-    //       children: [
-    //         {
-    //           ...baseInfo,
-    //         }
-    //       ]
-    //     })
-    //   } else if (children) { //多层嵌套
-    //     let childrenArr = null
-    //     if (children) {
-    //       childrenArr = filterRouters(children, "child")
-    //     }
-    //     returnArray.push({
-    //       ...baseInfo,
-    //       children: childrenArr
-    //     })
-    //   } else { //叶子节点
-    //     returnArray.push({
-    //       ...baseInfo,
-    //     })
-    //   }
+    if (children) { //多层嵌套
+      let childrenArr = null
+      if (children) {
+        childrenArr = filterRouters(children)
+      }
+     // component 将被渲染到 父组件 的 <router-view> 内部
+    //  详见：https://router.vuejs.org/zh/guide/essentials/nested-routes.html#%E5%B5%8C%E5%A5%97%E8%B7%AF%E7%94%B1
+      returnArray.push({
+        ...baseInfo,
+        children: childrenArr
+      })
+    } else { //叶子节点
+      returnArray.push({
+        ...baseInfo,
+      })
+    }
   })
   return returnArray;
 }
