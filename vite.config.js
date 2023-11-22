@@ -45,6 +45,7 @@ export default defineConfig(({ command, mode }) => {
     resolve: {
       alias: {
         // 'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
+        'vue': 'vue/dist/vue.esm-bundler.js',
         '@': resolve('src'),//路径化名
       },
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
