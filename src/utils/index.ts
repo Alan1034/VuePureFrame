@@ -9,6 +9,8 @@
  * 
  */
 import type { HttpResponse, RequestParams } from "@/api/api.auto";
+// import { ElMessage } from 'element-plus'
+// import { useUserInfoStore } from '@/stores/user'
 // import type { ServerResponseBaseType } from "@/api/type";
 interface ApiRequest<P, Data> {
   (props: P, params?: RequestParams): Promise<
@@ -20,11 +22,28 @@ interface ApiRequest<P, Data> {
 }
 // 创建一个request请求
 export function createApiAction<P, S>(apiFn: ApiRequest<P, S>) {
-  return async (props: P): Promise<S | undefined> => {
+
+  return async (props: any): Promise<S | undefined> => {
     // let Response: ServerResponseBaseType<S>
     let Response: any
+    const userInfo = {token:""}
+    // 统一添加请求头
+    const getRE = RegExp(`method: "GET"`)
+    const postRE = RegExp(`method: "POST"`)
+    if (userInfo.token && getRE.test(`${apiFn}`)) {
+      props.headers = {
+        "X-TOKEN": userInfo.token
+      }
+    }
+    const params = <any>{}
+    if (userInfo.token && postRE.test(`${apiFn}`)) {
+      params.headers = {
+        "X-TOKEN": userInfo.token
+      }
+    }
+
     try {
-      Response = await apiFn(props)
+      Response = await apiFn({ ...props }, params)
       return Response;
     } catch (error: any) {
       if (Response || error.url) {
@@ -36,4 +55,6 @@ export function createApiAction<P, S>(apiFn: ApiRequest<P, S>) {
     }
   };
 }
+
+
 
