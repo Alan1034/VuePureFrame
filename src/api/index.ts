@@ -1,46 +1,62 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
- * @Date: 2023-11-13 17:54:22
- * @LastEditTime: 2023-11-13 18:51:05
+ * @Date: 2023-11-15 15:49:59
+ * @LastEditTime: 2023-11-23 17:54:33
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description: 
- * @FilePath: \deal-front-end\src\api\index.ts
+ * @FilePath: \VuePureFrame\src\api\index.ts
  * 
  */
 import { Api as AutoApi } from "./api.auto";
-import type { ServerResponseBaseType } from "./type";
+// import { useUserInfoStore } from '@/stores/user'
+// import { ElMessage } from 'element-plus'
 
 class Api extends AutoApi<unknown> {
   constructor(...props: ConstructorParameters<typeof AutoApi>) {
     super(...props);
-    // const originRequest = this.request;
-    // this.request = (...args) => {
-    //   const [params] = args;
-    //   const onError = (params as ExtendedRequestParams | undefined)?.onError;
-    //   return originRequest(...args).catch((err: ServerResponseBaseType) => {
-    //     if (err.status !== 200) {
-    //       apiEmitter.emit(ApiEventName.ResponseError, {
-    //         message: "当前网络异常，请重试",
-    //         code: err.status,
-    //         onError
-    //       });
-    //     }
-    //     if (err.code  && err.message ) {
-    //       const { message, code, data } = err;
-    //       apiEmitter.emit(ApiEventName.ResponseError, {
-    //         message,
-    //         code,
-    //         data,
-    //         onError,
-    //       });
-    //     }
-    //     throw err;
-    //   });
-    // };
+    const originRequest = this.request;
+    // @ts-ignore
+    this.request = (...args) => {
+      const [params] = args;
+      return originRequest(...args).catch((error) => {
+        if (error.url) {
+          const err = error
+          if (err.error) {
+            const { code } = err.error
+            console.log("code", code)
+            if (`${code}` === "401") {
+
+              // token失效需要重新登录
+
+            }
+          }
+          alert(`${err.url, err.error?.message || err.statusText}`)
+        } else {
+          console.error(Response, error)
+        }
+      });
+    };
   }
 }
 
-export const api = new Api({
-  baseUrl:"/api",
-});
+export const api = () => {
+  // console.log("chufale")
+  let token
+  try {
+    token = JSON.parse(localStorage.getItem("token") || "")
+  } catch (error) {
+    console.info(error)
+  }
+
+  return new Api({
+    baseUrl: "/api",
+    baseApiParams: {
+      headers: {
+        "X-TOKEN": token
+      }
+    }
+  });
+}
+
+export const createApiAction = () => api()
