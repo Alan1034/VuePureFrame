@@ -4,7 +4,7 @@ import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { compression } from 'vite-plugin-compression2'
-import { updateVersion } from "./vitePlugin";
+import { updateVersion } from "vite-plugin-update-version";
 import obfuscatorPlugin from "vite-plugin-javascript-obfuscator";
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import path from 'path';
@@ -57,7 +57,7 @@ export default defineConfig(({ command, mode }) => {
        * @return {*}
        */
       {
-        ...updateVersion(),
+        ...updateVersion(__dirnameNew),
         apply: 'build',
       },
 
