@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2021-07-16 11:35:05
- * @LastEditTime: 2023-11-22 16:34:37
+ * @LastEditTime: 2023-11-28 11:42:35
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description: 
@@ -39,16 +39,16 @@ const routes = [
 const filterRouters = (arr) => {
   const returnArray = []
   arr.forEach((item) => {
-    const { pathKey, name, icon, children, path, hidden, meta } = item;
+    const { pathKey, name, children, path, hidden, meta } = item;
     const baseInfo = {
       path,
-      name: path,
+      name,
       component: () => Promise.resolve( //路由懒加载(动态导入)
         (pathKey && modules[pathKey]) ? modules[pathKey]() : Layout(),
       ),
       // redirect: children ? "noRedirect" : "", // 项目自定义属性
       // alwaysShow: children ? true : false,   // 项目自定义属性
-      meta: { noCache: true, affix: false, ...meta, title: name, icon, }, //affix设置标签是否不可关闭,项目自定义属性
+      meta: { ...item, ...meta, },
       hidden: hidden ? true : false
     }
     if (children) { //多层嵌套
@@ -72,6 +72,7 @@ const filterRouters = (arr) => {
 }
 
 const routerArr = filterRouters(routersLibrary);
+console.log(routerArr)
 routes.push(...routerArr)
 const routers = createRouter({
   // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
