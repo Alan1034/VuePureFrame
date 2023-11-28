@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2021-07-16 11:35:05
- * @LastEditTime: 2023-11-28 11:42:35
+ * @LastEditTime: 2023-11-28 16:21:37
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description: 
@@ -58,6 +58,8 @@ const filterRouters = (arr) => {
       }
       // component 将被渲染到 父组件 的 <router-view> 内部
       //  详见：https://router.vuejs.org/zh/guide/essentials/nested-routes.html#%E5%B5%8C%E5%A5%97%E8%B7%AF%E7%94%B1
+      //  建议path以 / 开头，以使嵌套路径中的路径成为绝对路径
+      //  详见：https://router.vuejs.org/zh/guide/essentials/redirect-and-alias.html
       returnArray.push({
         ...baseInfo,
         children: childrenArr
