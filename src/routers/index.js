@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2021-07-16 11:35:05
- * @LastEditTime: 2023-11-28 16:21:37
+ * @LastEditTime: 2023-12-15 17:43:16
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description: 
@@ -42,7 +42,7 @@ const filterRouters = (arr) => {
     const { pathKey, name, children, path, hidden, meta } = item;
     const baseInfo = {
       path,
-      name,
+      name: name + pathKey,
       component: () => Promise.resolve( //路由懒加载(动态导入)
         (pathKey && modules[pathKey]) ? modules[pathKey]() : Layout(),
       ),
