@@ -124,7 +124,7 @@ export default defineConfig(({ command, mode }) => {
         // debugger: true,
         options: {
           // your javascript-obfuscator options
-          debugProtection: env.CURRENT_ENV === 'production' ? true : false,
+          debugProtection: env.CURRENT_ENV === 'prod' ? true : false,
           // ...  [See more options](https://github.com/javascript-obfuscator/javascript-obfuscator)
         },
       }) : {},
