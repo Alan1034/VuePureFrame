@@ -5,7 +5,7 @@
     "serve": "cross-env CURRENT_ENV=dev vite",
     "serve:uat": "cross-env CURRENT_ENV=uat vite --mode uat",
     "build": "run-p type-check && cross-env CURRENT_ENV=prod run-p build-only",
-    "preview": "cross-env CURRENT_ENV=prod vite preview",
+    "preview": "vite preview",
     "test:e2e": "playwright test",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
