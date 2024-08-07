@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "test": "cross-env CURRENT_ENV=dev playwright test",
     "test:uat": "cross-env CURRENT_ENV=uat playwright test",
-    "codegen": "playwright codegen --load-storage=.auth/user.json",
+    "codegen": "playwright codegen --load-storage=e2e/auth/user.json",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",

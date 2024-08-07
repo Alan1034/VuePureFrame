@@ -76,7 +76,7 @@ const config: PlaywrightTestConfig = {
       use: {
         ...devices['Desktop Chrome'],
         // setup 完成鉴权后，浏览器缓存状态会保存在此，正式的测试工程在执行前通过此文件恢复浏览器缓存，进而获取了用户登录态
-        storageState: '.auth/user.json'
+        storageState: 'e2e/auth/user.json'
       },
       dependencies: ['setup']
     },
@@ -84,7 +84,7 @@ const config: PlaywrightTestConfig = {
     //   name: 'firefox',
     //   use: {
     //     ...devices['Desktop Firefox'],
-    //     storageState: '.auth/user.json'
+    //     storageState: 'e2e/auth/user.json'
     //   },
     //   dependencies: ['setup']
     // },
@@ -92,7 +92,7 @@ const config: PlaywrightTestConfig = {
     //   name: 'webkit',
     //   use: {
     //     ...devices['Desktop Safari'],
-    //     storageState: '.auth/user.json'
+    //     storageState: 'e2e/auth/user.json'
     //   },
     //   dependencies: ['setup']
     // },
@@ -102,7 +102,7 @@ const config: PlaywrightTestConfig = {
       name: 'Mobile Chrome',
       use: {
         ...devices['Pixel 5'],
-        storageState: '.auth/user.json'
+        storageState: 'e2e/auth/user.json'
       },
       dependencies: ['setup']
     },
@@ -110,7 +110,7 @@ const config: PlaywrightTestConfig = {
     //   name: 'Mobile Safari',
     //   use: {
     //     ...devices['iPhone 12'],
-    //     storageState: '.auth/user.json'
+    //     storageState: 'e2e/auth/user.json'
     //   },
     //   dependencies: ['setup']
     // }

@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2024-08-06 16:51:15
- * @LastEditTime: 2024-08-07 19:46:41
+ * @LastEditTime: 2024-08-07 20:33:43
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description:参考https://zhuanlan.zhihu.com/p/635253585
@@ -12,7 +12,7 @@
  */
 import { test, } from '@playwright/test'
 import { writeFile } from 'node:fs/promises'
-const authFile = '.auth/user.json'
+const authFile = 'e2e/auth/user.json'
 
 test('authenticate', async ({ page }) => {
   // 输入账号、密码、点击登录

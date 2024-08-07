@@ -12,7 +12,7 @@
 import { test, expect } from '@playwright/test'
 
 test.use({
-  storageState: '.auth/user.json'
+  storageState: 'e2e/auth/user.json'
 })
 
 test('新增商机管理', async ({ page }) => {
@@ -24,8 +24,8 @@ test('新增商机管理', async ({ page }) => {
   if (await MobileHeaderMenu.isVisible()) {
     await MobileHeaderMenu.click()
   }
-  await page.locator('div').filter({ hasText: /^商机管理$/ }).click();
-  await page.getByRole('menuitem', { name: '我的' }).click();
+  // await page.locator('div').filter({ hasText: /^商机管理$/ }).click();
+  // await page.getByRole('menuitem', { name: '我的' }).click();
   // 因为限制两个，先删一个
   // 有可能一个也没有，用isVisible判断
   const deleteButton = await page.getByRole('button', { name: '删除' }).first()

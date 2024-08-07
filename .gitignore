@@ -35,4 +35,4 @@ playwright-report/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
-/.auth
+/e2e/auth/user.json
