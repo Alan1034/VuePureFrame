@@ -42,6 +42,15 @@ vue3+vite+typescript branch
 
 Add support for TS and other plugins, integrating features such as automatic update of package. json version information, code compression and encryption, compatibility with older browsers, and more
 
+支持使用playwright进行自动化测试，并自动生成生成系统路由测试用例，支持登陆信息储存，支持不同环境的自动化测试
 
+Support the use of Playwright for automated testing, automatically generate system route test describe, support login info storage, and support automated testing in different environments
+
+npm run test
+uat 环境
+npm run test:uat
+
+使用codegen自动生成测试代码
+npm run codegen
 
 [DEMO](https://alan1034.github.io/VuePureFrame/)

@@ -31,3 +31,8 @@ test-results/
 playwright-report/
 
 # package-lock.json 增加package-lock以配置流水線打包
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/.auth

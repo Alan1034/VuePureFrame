@@ -1,12 +1,15 @@
 {
   "name": "vue-pure-frame",
-  "version": "1.20240313.3",
+  "version": "1.20240731.1",
+  "type": "module",
   "scripts": {
     "serve": "cross-env CURRENT_ENV=dev vite",
     "serve:uat": "cross-env CURRENT_ENV=uat vite --mode uat",
     "build": "run-p type-check && cross-env CURRENT_ENV=prod run-p build-only",
     "preview": "vite preview",
-    "test:e2e": "playwright test",
+    "test": "cross-env CURRENT_ENV=dev playwright test",
+    "test:uat": "cross-env CURRENT_ENV=uat playwright test",
+    "codegen": "playwright codegen --load-storage=.auth/user.json",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
@@ -17,7 +20,7 @@
     "vite/client"
   ],
   "devDependencies": {
-    "@playwright/test": "^1.42.1",
+    "@playwright/test": "^1.45.2",
     "@rushstack/eslint-patch": "^1.8.0",
     "@tsconfig/node18": "^18.2.3",
     "@types/node": "^20.11.30",
@@ -50,6 +53,7 @@
   "dependencies": {
     "axios": "^1.6.8",
     "chalk": "^5.3.0",
+    "dotenv": "^16.4.5",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   }

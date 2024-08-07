@@ -4,15 +4,28 @@ import { devices } from '@playwright/test'
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
+ * https://zhuanlan.zhihu.com/p/635253585
  */
 // require('dotenv').config();
-
+import dotenv from 'dotenv'
+import { fileURLToPath } from 'url'
+import path from 'path'
+const __filenameNew = fileURLToPath(import.meta.url)
+const __dirnameNew = path.dirname(__filenameNew)
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+// Read from ".env" file.
+const modeExt = process.env.CURRENT_ENV || 'dev'
+dotenv.config({ path: path.resolve(__dirnameNew, '.env') })
+dotenv.config({ path: path.resolve(__dirnameNew, `.env.${modeExt}`), override: true })
+process.env.__dirnameNew = __dirnameNew;
 const config: PlaywrightTestConfig = {
+  /* Run tests in files in parallel */
+  fullyParallel: true,
   testDir: './e2e',
   /* Maximum time one test can run for. */
+  // 链接失败可能会导致超时
   timeout: 30 * 1000,
   expect: {
     /**
@@ -28,16 +41,27 @@ const config: PlaywrightTestConfig = {
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [
+    // 在命令行中同步打印每条用例的执行结果
+    ['list'],
+    // 输出 html 格式的报告，并将报告归档与指定路径
+    [
+      'html',
+      {
+        outputFolder: 'playwright-report'
+      }
+    ]
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'http://localhost:5173',
+    baseURL: process.env.WEBSITE_URL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    video: 'on-first-retry',
 
     /* Only on CI systems run the tests headless */
     headless: !!process.env.CI
@@ -45,38 +69,51 @@ const config: PlaywrightTestConfig = {
 
   /* Configure projects for major browsers */
   projects: [
+    // setup 工程只执行 e2e 目录下以 .setup.ts 结尾的文件。在所有正式测试执行前先完成鉴权初始化
+    { name: 'setup', testMatch: /.*\.setup\.ts/ },
     {
       name: 'chromium',
       use: {
-        ...devices['Desktop Chrome']
-      }
+        ...devices['Desktop Chrome'],
+        // setup 完成鉴权后，浏览器缓存状态会保存在此，正式的测试工程在执行前通过此文件恢复浏览器缓存，进而获取了用户登录态
+        storageState: '.auth/user.json'
+      },
+      dependencies: ['setup']
     },
-    {
-      name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox']
-      }
-    },
-    {
-      name: 'webkit',
-      use: {
-        ...devices['Desktop Safari']
-      }
-    }
+    // {
+    //   name: 'firefox',
+    //   use: {
+    //     ...devices['Desktop Firefox'],
+    //     storageState: '.auth/user.json'
+    //   },
+    //   dependencies: ['setup']
+    // },
+    // {
+    //   name: 'webkit',
+    //   use: {
+    //     ...devices['Desktop Safari'],
+    //     storageState: '.auth/user.json'
+    //   },
+    //   dependencies: ['setup']
+    // },
 
     /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: {
-    //     ...devices['Pixel 5'],
-    //   },
-    // },
+    {
+      name: 'Mobile Chrome',
+      use: {
+        ...devices['Pixel 5'],
+        storageState: '.auth/user.json'
+      },
+      dependencies: ['setup']
+    },
     // {
     //   name: 'Mobile Safari',
     //   use: {
     //     ...devices['iPhone 12'],
+    //     storageState: '.auth/user.json'
     //   },
-    // },
+    //   dependencies: ['setup']
+    // }
 
     /* Test against branded browsers. */
     // {
@@ -94,7 +131,7 @@ const config: PlaywrightTestConfig = {
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
-  // outputDir: 'test-results/',
+  outputDir: 'test-results/',
 
   /* Run your local dev server before starting the tests */
   webServer: {
