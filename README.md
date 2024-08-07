@@ -46,6 +46,8 @@ Add support for TS and other plugins, integrating features such as automatic upd
 
 Support the use of Playwright for automated testing, automatically generate system route test describe, support login info storage, and support automated testing in different environments
 
+npx playwright install
+
 npm run test
 uat 环境
 npm run test:uat
