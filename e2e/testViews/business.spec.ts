@@ -20,8 +20,8 @@ test('新增商机管理', async ({ page }) => {
   await page.goto('/')
 
   // 使用data-testid判断有没有移动端的菜单按钮，注意不是id
-  const MobileHeaderMenu = await page.getByTestId("MobileHeader-menu")
-  if (await MobileHeaderMenu.isVisible()) {
+  const MobileHeaderMenu = await page.getByTestId('MobileHeader-menu')
+  if (await MobileHeaderMenu.isEnabled()) {
     await MobileHeaderMenu.click()
   }
   // await page.locator('div').filter({ hasText: /^商机管理$/ }).click();
@@ -29,11 +29,11 @@ test('新增商机管理', async ({ page }) => {
   // 因为限制两个，先删一个
   // 有可能一个也没有，用isVisible判断
   const deleteButton = await page.getByRole('button', { name: '删除' }).first()
-  // console.log(await deleteButton.isVisible())
-  if (await deleteButton.isVisible()) {
+  // console.log(await deleteButton.isEnabled())
+  if (await deleteButton.isEnabled()) {
     await deleteButton.first().click()
     const confirmButton = await page.getByRole('button', { name: 'Yes' })
-    if (await confirmButton.isVisible()) {
+    if (await confirmButton.isEnabled()) {
       await confirmButton.click()
     }
   }
