@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2024-08-06 18:24:03
- * @LastEditTime: 2024-08-08 11:48:22
+ * @LastEditTime: 2024-08-08 16:30:04
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description:
@@ -10,7 +10,7 @@
  */
 // 自动生成的代码
 import { test, expect } from '@playwright/test'
-
+import { Mockjs } from 'mockjs-extend';
 test.use({
   storageState: 'e2e/auth/user.json'
 })
@@ -49,7 +49,10 @@ test('新增商机管理', async ({ page }, testInfo) => {
 
   // 使用codegen自动生成的测试代码
 
-  // await page.getByRole('button', { name: '新增商机' }).click();
-  // await page.getByPlaceholder('请输入商机项目名称').click()
+  // await page.getByTestId('add-customer').click()
+  // await page.getByRole('textbox', { name: '* 客户名称' }).click()
+  // await page.getByRole('textbox', { name: '* 客户名称' }).fill(`客户名称${Mockjs.Random.companyName()}`)
+  // await page.getByPlaceholder('请输入经营范围').click()
+  // await page.getByPlaceholder('请输入经营范围').fill(Mockjs.mock('@cparagraph()'))
   //...
 })
