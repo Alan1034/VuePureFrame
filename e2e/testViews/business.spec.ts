@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2024-08-06 18:24:03
- * @LastEditTime: 2024-08-08 16:30:04
+ * @LastEditTime: 2024-08-08 21:36:03
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description:
@@ -19,7 +19,7 @@ test('新增商机管理', async ({ page }, testInfo) => {
   // 访问商机管理
   await page.goto('/')
 
-  const { project } = testInfo
+  const { project, timeout } = testInfo
   const { name } = project
 
   if (['Mobile Chrome', 'Mobile Safari'].includes(name)) {
@@ -33,18 +33,15 @@ test('新增商机管理', async ({ page }, testInfo) => {
   // await page.locator('div').filter({ hasText: /^商机管理$/ }).click();
   // await page.getByRole('menuitem', { name: '我的' }).click();
   // 因为限制两个，先删一个
-  // 有可能一个也没有
+  // 有可能一个也没有，用page.waitForTimeout(3000)，以处理列表接口延迟造成的按钮延迟显示
+  await page.waitForTimeout(3000)
   const deleteButton = await page.getByRole('button', { name: '删除' }).first()
-  try {
-    if (await deleteButton.isEnabled()) {
-      await deleteButton.first().click()
-      const confirmButton = await page.getByRole('button', { name: 'Yes' })
-      if (await confirmButton.isEnabled()) {
-        await confirmButton.click()
-      }
+  if (await deleteButton.isVisible()) {
+    await deleteButton.click()
+    const confirmButton = await page.getByRole('button', { name: 'Yes' })
+    if (await confirmButton.isVisible()) {
+      await confirmButton.click()
     }
-  } catch (error) {
-    console.warn(error)
   }
 
   // 使用codegen自动生成的测试代码
