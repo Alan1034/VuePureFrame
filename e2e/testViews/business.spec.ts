@@ -15,15 +15,21 @@ test.use({
   storageState: 'e2e/auth/user.json'
 })
 
-test('新增商机管理', async ({ page }) => {
+test('新增商机管理', async ({ page }, testInfo) => {
   // 访问商机管理
   await page.goto('/')
 
-  // 使用data-testid判断有没有移动端的菜单按钮，注意不是id
-  const MobileHeaderMenu = await page.getByTestId("MobileHeader-menu")
-  if (await MobileHeaderMenu.isVisible()) {
-    await MobileHeaderMenu.click()
+  const { project } = testInfo
+  const { name } = project
+
+  if (['Mobile Chrome', 'Mobile Safari'].includes(name)) {
+    // 使用data-testid判断有没有移动端的菜单按钮，注意不是id
+    const MobileHeaderMenu = await page.getByTestId('MobileHeader-menu')
+    if (await MobileHeaderMenu.isEnabled()) {
+      await MobileHeaderMenu.click()
+    }
   }
+
   // await page.locator('div').filter({ hasText: /^商机管理$/ }).click();
   // await page.getByRole('menuitem', { name: '我的' }).click();
   // 因为限制两个，先删一个
