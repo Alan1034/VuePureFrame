@@ -1,6 +1,6 @@
 import legacy from '@vitejs/plugin-legacy'
 import { fileURLToPath } from 'url'
-import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { compression } from 'vite-plugin-compression2'
@@ -59,15 +59,6 @@ export default defineConfig(({ command, mode }) => {
        */
       {
         ...updateVersion(__dirnameNew),
-        apply: 'build',
-      },
-
-      /**
-       * @description: vite自带的文件分割配置
-       * @return {*}
-       */
-      {
-        ...splitVendorChunkPlugin(),
         apply: 'build',
       },
       /**
