@@ -8,7 +8,7 @@
     "outDir": "build",
     "allowJs": true,
     "composite": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"]
     }
