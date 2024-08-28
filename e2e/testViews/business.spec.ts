@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2024-08-06 18:24:03
- * @LastEditTime: 2024-08-08 21:36:03
+ * @LastEditTime: 2024-08-28 19:09:06
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description:
@@ -15,7 +15,7 @@ test.use({
   storageState: 'e2e/auth/user.json'
 })
 
-test('新增商机管理', async ({ page }, testInfo) => {
+test('新增商机管理', async ({ page,request }, testInfo) => {
   // 访问商机管理
   await page.goto('/')
 
@@ -51,5 +51,21 @@ test('新增商机管理', async ({ page }, testInfo) => {
   // await page.getByRole('textbox', { name: '* 客户名称' }).fill(`客户名称${Mockjs.Random.companyName()}`)
   // await page.getByPlaceholder('请输入经营范围').click()
   // await page.getByPlaceholder('请输入经营范围').fill(Mockjs.mock('@cparagraph()'))
+
+
+  // 调用接口，不写域名默认连接到localhost上
+  // const apiResponse = await request.post("/order/query/queryAepOrderList", {
+  //   data: {
+  //  
+  //   },
+  // });
+  // const data = await apiResponse.json();
+  // if (!data.success) {
+  //   return;
+  // }
+  // const { list } = data.data;
+  // const toCancle = list.find((item:any) => item.statusCdName === "预受理");
+  // console.log(toCancle.orderItemNbr);
+
   //...
 })
