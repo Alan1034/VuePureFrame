@@ -31,6 +31,8 @@ export default defineConfig(({ command, mode }) => {
 
     server: {
       open: true,
+      // 每次启动的时候都强制进行预构建
+      // force: true,
       // proxy: {
       // [`/${env.APP_BASE_API}/api`]: {
       //     target: 'https://test.com',
