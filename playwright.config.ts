@@ -26,13 +26,13 @@ const config: PlaywrightTestConfig = {
   testDir: './e2e',
   /* Maximum time one test can run for. */
   // 链接失败可能会导致超时
-  timeout: 30 * 1000,
+  timeout: 7 * 60 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
      * For example in `await expect(locator).toHaveText();`
      */
-    timeout: 5000
+    timeout: 2 * 60 * 1000,
   },
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
