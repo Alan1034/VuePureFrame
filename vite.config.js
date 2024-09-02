@@ -28,7 +28,9 @@ export default defineConfig(({ command, mode }) => {
       CURRENT_ENV: JSON.stringify(env.CURRENT_ENV),
       APP_BASE_API: JSON.stringify(env.APP_BASE_API),
     },
-
+    optimizeDeps: {
+      force: true,
+    },
     server: {
       open: true,
       // 每次启动的时候都强制进行预构建
