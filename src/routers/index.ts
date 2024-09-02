@@ -1,19 +1,20 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2021-07-16 11:35:05
- * @LastEditTime: 2023-12-15 17:43:16
+ * @LastEditTime: 2024-09-02 14:15:10
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
- * @Description: 
- * @FilePath: \VuePureFrame\src\routers\index.js
- * 
+ * @Description:
+ * @FilePath: \VuePureFrame\src\routers\index.ts
+ *
  */
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
-import { routersLibrary } from "./configure";
-const Home = () => import("@/views/Home.vue")
+import { routersLibrary } from './configure'
+import type { RouteRecordRaw } from 'vue-router'
+const Home = () => import('@/views/Home.vue')
 /* Layout */
-const Layout = () => import("@/layouts/RouterLayout.vue")
-const NotFoundComponent = () => import("@/views/state/404/index.vue")
+const Layout = () => import('@/layouts/RouterLayout.vue')
+const NotFoundComponent = () => import('@/views/state/404/index.vue')
 
 /**
  * 写在views下的index.vue文件会自动匹配到路径,去隔壁configure.json配置下信息就能自动展示了
@@ -30,29 +31,32 @@ for (const path in modules) {
   // })
 }
 // console.log(map)
-const routes = [
+const routes: RouteRecordRaw[] = [
   { path: '/home', component: Home },
   { path: '/', component: Home },
-  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFoundComponent },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFoundComponent }
 ]
 
-const filterRouters = (arr) => {
-  const returnArray = []
-  arr.forEach((item) => {
-    const { pathKey, name, children, path, hidden, meta } = item;
+const filterRouters = (arr: any) => {
+  const returnArray: RouteRecordRaw[] = []
+  arr.forEach((item: any) => {
+    const { pathKey, name, children, path, hidden, meta } = item
     const baseInfo = {
       path,
       name: name + pathKey,
-      component: () => Promise.resolve( //路由懒加载(动态导入)
-        (pathKey && modules[pathKey]) ? modules[pathKey]() : Layout(),
-      ),
+      component: () =>
+        Promise.resolve(
+          //路由懒加载(动态导入)
+          pathKey && modules[pathKey] ? modules[pathKey]() : Layout()
+        ),
       // redirect: children ? "noRedirect" : "", // 项目自定义属性
       // alwaysShow: children ? true : false,   // 项目自定义属性
-      meta: { ...item, ...meta, },
+      meta: { ...item, ...meta },
       hidden: hidden ? true : false
     }
-    if (children) { //多层嵌套
-      let childrenArr = null
+    if (children) {
+      //多层嵌套
+      let childrenArr
       if (children) {
         childrenArr = filterRouters(children)
       }
@@ -64,27 +68,28 @@ const filterRouters = (arr) => {
         ...baseInfo,
         children: childrenArr
       })
-    } else { //叶子节点
+    } else {
+      //叶子节点
       returnArray.push({
-        ...baseInfo,
+        ...baseInfo
       })
     }
   })
-  return returnArray;
+  return returnArray
 }
 
-const routerArr = filterRouters(routersLibrary);
+const routerArr = filterRouters(routersLibrary)
 console.log(routerArr)
 routes.push(...routerArr)
 const routers = createRouter({
   // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
   // history: createWebHistory(),
   history: createWebHashHistory(), //为了在github服务上展示，使用hashRouter
-  routes, // `routes: routes` 的缩写
+  routes // `routes: routes` 的缩写
 })
 // const Router = new VueRouter({
 //   base: process.env.BASE_URL,
 
 // })
 
-export default routers;
+export default routers
