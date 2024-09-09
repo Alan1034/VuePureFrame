@@ -24,7 +24,7 @@
       "children": [
         {
           "pathKey": "../views/system/tag/index.vue",
-          "path": "/system/tag",
+          "path": "tag",
           "name": "标签管理"
         }
       ]
