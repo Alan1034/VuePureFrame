@@ -26,6 +26,12 @@
           "pathKey": "../views/system/tag/index.vue",
           "path": "tag",
           "name": "标签管理"
+        },
+        {
+          "pathKey": "../views/system/tag/detail/index.vue",
+          "path": "tag/:id",
+          "name": "标签管理详情",
+          "hidden": true
         }
       ]
     }
