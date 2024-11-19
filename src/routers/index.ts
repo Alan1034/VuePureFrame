@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2021-07-16 11:35:05
- * @LastEditTime: 2024-09-02 14:15:10
+ * @LastEditTime: 2024-11-19 18:29:14
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description:
@@ -9,7 +9,7 @@
  *
  */
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
-import { routersLibrary } from './configure'
+import { routersLibrary } from './configure.json'
 import type { RouteRecordRaw } from 'vue-router'
 const Home = () => import('@/views/Home.vue')
 /* Layout */
