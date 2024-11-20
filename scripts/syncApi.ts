@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2023-05-09 17:44:24
- * @LastEditTime: 2024-08-30 17:24:10
+ * @LastEditTime: 2024-11-20 19:02:08
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description: OpenAPI格式(Swagger)文件转化为TS接口文件
@@ -12,7 +12,9 @@ import { execSync } from "node:child_process";
 import path from "node:path";
 import { formatFile } from "./lib/format";
 import chalk from 'chalk'
-
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const apiDir = path.resolve(__dirname, "../src/api");
 const apiAutoFileName = "api.auto.ts";
 const apiAutoFilePath = path.resolve(apiDir, apiAutoFileName);
