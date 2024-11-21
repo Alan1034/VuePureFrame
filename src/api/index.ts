@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2023-11-15 15:49:59
- * @LastEditTime: 2024-11-21 11:29:54
+ * @LastEditTime: 2024-11-21 17:50:33
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description:
@@ -62,4 +62,53 @@ export const api = (params?: ApiConfig) => {
 
 export const apiParams = {
   baseUrl: "/api1",
+}
+
+/**
+ * @description: 统一处理返回消息的弹框提示
+ * @param {object} res
+ * @param {function} successCallback
+ * @param {function} errorCallback
+ * @return {*}
+ */
+export const messageRes = (
+  res: { data: any },
+  successCallback?: (resData: any) => void,
+  errorCallback?: () => void
+) => {
+  if (!successCallback) {
+    successCallback = () => {}
+  }
+  if (!errorCallback) {
+    errorCallback = () => {}
+  }
+  const showMessage = true
+  requestRes(res, successCallback, errorCallback, showMessage)
+}
+
+/**
+ * @description: 统一处理接口返回的结果
+ * @param {object} res
+ * @return {*}
+ */
+export const requestRes = (
+  res: { data: any },
+  successCallback?: (resData: any) => void,
+  errorCallback?: () => void,
+  showMessage?: Boolean
+) => {
+  if (!res) {
+    successCallback && errorCallback && errorCallback()
+    return
+  }
+  const { data = {} as any } = res
+  const { code, message = '', error, success, reason } = data
+  if (`${code}` === '0' || `${code}` === '200' || success) {
+    const { data: resData } = data
+    showMessage && alert(message || reason)
+    successCallback && successCallback(resData)
+  } else {
+    showMessage && alert(`${error || ''} ${message || ''} ${reason || ''}`)
+    successCallback && errorCallback && errorCallback()
+  }
 }
