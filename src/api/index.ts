@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2023-11-15 15:49:59
- * @LastEditTime: 2023-11-23 18:31:45
+ * @LastEditTime: 2024-11-21 11:29:54
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description:
@@ -9,6 +9,8 @@
  *
  */
 import { Api as AutoApi } from './api.auto'
+import { RSA_SIGN } from '@/utils/rsa'
+import type { ApiConfig } from "./api.auto";
 // import { useUserInfoStore } from '@/stores/user'
 // import { ElMessage } from 'element-plus'
 
@@ -19,6 +21,7 @@ class Api extends AutoApi<unknown> {
     // @ts-ignore
     this.request = (...args) => {
       const [params] = args
+      console.log(props)
       return originRequest(...args).catch((error) => {
         if (error.url) {
           const err = error
@@ -38,8 +41,7 @@ class Api extends AutoApi<unknown> {
   }
 }
 
-export const api = () => {
-  // console.log("chufale")
+export const api = (params?: ApiConfig) => {
   let token
   try {
     token = JSON.parse(localStorage.getItem('userInfo') || '{}')
@@ -48,13 +50,16 @@ export const api = () => {
   }
 
   return new Api({
-    baseUrl: `/${APP_BASE_API}/api`,
+    baseUrl: `/api`,
     baseApiParams: {
       headers: {
         'X-TOKEN': token
-      }
-    }
+      },
+    },
+    ...params,
   })
 }
 
-export const createApiAction = () => api()
+export const apiParams = {
+  baseUrl: "/api1",
+}

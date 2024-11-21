@@ -9,7 +9,7 @@
  *
  */
 import { defineStore } from 'pinia'
-import { createApiAction, gatewayParams } from '@/api'
+import { api, gatewayParams } from '@/api'
 
 export const useUserInfoStore = defineStore('userInfo', {
   state: () => {
@@ -64,7 +64,7 @@ export const useUserInfoStore = defineStore('userInfo', {
         if (timeout >= countTime) {
           try {
             // 刷新token
-            const refeshCreate = createApiAction(gatewayParams).refreshCreate
+            const refeshCreate = api(gatewayParams).refreshCreate
             const res: any = await refeshCreate({})
             const { data } = res
             const { token } = data

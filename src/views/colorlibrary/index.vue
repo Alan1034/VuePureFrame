@@ -4,13 +4,13 @@
 
 <script>
 import MainLayout from "@/layouts/MainLayout.vue";
-import { createApiAction } from "@/api";
+import { api } from "@/api";
 export default {
   components: {
     MainLayout,
   },
   mounted(){
-    const post = createApiAction().post;
+    const post = api().post;
   }
 };
 </script>
