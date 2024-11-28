@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2023-04-03 16:44:57
- * @LastEditTime: 2024-11-20 11:25:34
+ * @LastEditTime: 2024-11-28 17:41:53
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description:
@@ -9,29 +9,31 @@
  * service worker 的功能类似于代理服务器，允许你去修改请求和响应，将其替换成来自其自身缓存的项目。
  * https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers
  *
- * @FilePath: \ctwing-ict-order-h5\src\utils\serviceWorker.ts
+ * @FilePath: \VuePureFrame\src\utils\serviceWorker.ts
  *
  */
 import pageageInfo from '../../package.json'
 
 export const registerServiceWorker = async () => {
   if ('serviceWorker' in navigator) {
-
     try {
-      const registration = await navigator.serviceWorker.register('/sw.js', {
-        scope: '/'
-      })
+      const registration = await navigator.serviceWorker.register(
+        `${APP_BASE_API ? '/' + APP_BASE_API : ''}/sw.js`,
+        {
+          scope: `${APP_BASE_API ? '/' + APP_BASE_API : ''}/`
+        }
+      )
       const version = localStorage.getItem('version')
       // console.log("version", version)
       if (!version) {
         localStorage.setItem('version', pageageInfo.version)
       }
       // console.log("pageageInfo.version", pageageInfo.version)
-      if ( version !== pageageInfo.version) {
+      if (version !== pageageInfo.version) {
         // ServiceWorkerRegistration 的 update 方法尝试更新 service worker。获得 worker 脚本的 URL，逐字节匹配新获取的 worker 和当前的 worker，存在差异的时候安装新的 worker。获取 worker 脚本的更新操作会忽略浏览器缓存的 24 小时前的内容。
         registration.update()
-        console.info("serviceWorker update")
-        localStorage.setItem("version", pageageInfo.version)
+        console.info('serviceWorker update')
+        localStorage.setItem('version', pageageInfo.version)
       }
     } catch (error) {
       console.warn(`Registration failed with ${error}`)

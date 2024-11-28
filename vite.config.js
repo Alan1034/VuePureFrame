@@ -22,7 +22,7 @@ export default defineConfig(({ command, mode }) => {
   // console.log(env.APP_ENV)
   // console.log(env.VUE_APP_BASE_API)
   return {
-    base: `/${env.APP_BASE_API}/`, // 部署在GitHub Pages需要加上base，詳見：https://cn.vitejs.dev/guide/static-deploy.html#github-pages
+    base: `${env.APP_BASE_API ? '/' + env.APP_BASE_API : ''}/`, // 部署在GitHub Pages需要加上base，詳見：https://cn.vitejs.dev/guide/static-deploy.html#github-pages
     // vite环境变量配置
     define: {
       CURRENT_ENV: JSON.stringify(env.CURRENT_ENV),
