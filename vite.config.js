@@ -121,6 +121,8 @@ export default defineConfig(({ command, mode }) => {
         options: {
           // your javascript-obfuscator options
           debugProtection: env.CURRENT_ENV === 'prod' ? true : false,
+          renameGlobals: true,
+          transformObjectKeys: true
           // ...  [See more options](https://github.com/javascript-obfuscator/javascript-obfuscator)
         },
       }) : {},
