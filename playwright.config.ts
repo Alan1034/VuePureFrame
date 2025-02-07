@@ -58,7 +58,7 @@ const config: PlaywrightTestConfig = {
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: process.env.WEBSITE_URL,
-
+    // Trace files, screenshots and videos will appear in the test output directory, typically test-results.
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     video: 'on-first-retry',
