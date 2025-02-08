@@ -65,12 +65,13 @@ const config: PlaywrightTestConfig = {
       mode: 'on-first-retry',
       // mode: 'on',
       size: {
-        // 桌面端分辨率
-        width: 1920,
-        height: 1080,
-        // 移动端分辨率
-        // width: 400,
-        // height: 680,
+        // 分辨率看devices参数
+        // Desktop Chrome分辨率
+        // width: 1920,
+        // height: 1080,
+        // 'iPhone 15 Pro Max分辨率
+        width: 430,
+        height: 739,
       }
     },
     /* Only on CI systems run the tests headless */
