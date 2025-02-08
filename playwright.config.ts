@@ -61,8 +61,18 @@ const config: PlaywrightTestConfig = {
     // Trace files, screenshots and videos will appear in the test output directory, typically test-results.
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    video: 'on-first-retry',
-
+    video: {
+      mode: 'on-first-retry',
+      // mode: 'on',
+      size: {
+        // 桌面端分辨率
+        width: 1920,
+        height: 1080,
+        // 移动端分辨率
+        // width: 400,
+        // height: 680,
+      }
+    },
     /* Only on CI systems run the tests headless */
     headless: !!process.env.CI
   },
@@ -109,7 +119,7 @@ const config: PlaywrightTestConfig = {
     // {
     //   name: 'Mobile Safari',
     //   use: {
-    //     ...devices['iPhone 12'],
+    //     ...devices['iPhone 15 Pro Max'],
     //     storageState: 'e2e/auth/user.json'
     //   },
     //   dependencies: ['setup']
