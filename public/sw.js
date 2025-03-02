@@ -86,6 +86,11 @@ const cacheFirst = async ({ request, preloadResponsePromise, event }) => {
     // console.log(reqUrl)
     // console.log(reqUrl.pathname)
     // if (`${location.origin}/` === `${event.request.url}`) {
+      try {
+        new URL(self.origin) // 验证 origin 合法性
+      } catch {
+        self.origin = location.origin // 回退到 location.origin
+      }
     if (reqUrl.pathname === '/' && reqUrl.origin === self.origin){
       cache = 'no-store'
       // console.log(event.request.url,"event.request.url")
