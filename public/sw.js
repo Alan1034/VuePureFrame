@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2023-04-03 16:52:20
- * @LastEditTime: 2025-03-02 11:16:35
+ * @LastEditTime: 2025-03-02 11:56:26
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description: service worker 最大的作用域是 worker 所在的位置（换句话说，如果脚本 sw.js 位于 /js/sw.js 中，默认情况下它只能控制 /js/ 下的 URL）。可以使用 Service-Worker-Allowed 标头指定 worker 的最大作用域列表。
@@ -86,10 +86,10 @@ const cacheFirst = async ({ request, preloadResponsePromise, event }) => {
     // console.log(reqUrl)
     // console.log(reqUrl.pathname)
     // if (`${location.origin}/` === `${event.request.url}`) {
-    if (reqUrl.pathname === '/' && reqUrl.origin === location.origin){
+    if (reqUrl.pathname === '/' && reqUrl.origin === self.origin){
       cache = 'no-store'
-      // console.log(event.request.url)
-      // console.log(location.origin)
+      // console.log(event.request.url,"event.request.url")
+      // console.log(location.origin,"event.request.url")
       // console.log('cache', cache)
     }
     const responseFromNetwork = await fetch(request, { cache })
