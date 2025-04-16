@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2023-11-15 15:49:59
- * @LastEditTime: 2025-03-02 10:22:52
+ * @LastEditTime: 2025-04-16 15:48:50
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description:
@@ -35,6 +35,7 @@ class Api extends AutoApi<unknown> {
           alert(`${(err.url, err.error?.message || err.statusText)}`)
         } else {
           console.error(Response, error)
+          alert(`${error}`)
         }
       })
     }
