@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2023-04-03 16:52:20
- * @LastEditTime: 2025-03-03 14:49:39
+ * @LastEditTime: 2025-04-18 21:53:14
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description: service worker 最大的作用域是 worker 所在的位置（换句话说，如果脚本 sw.js 位于 /js/sw.js 中，默认情况下它只能控制 /js/ 下的 URL）。可以使用 Service-Worker-Allowed 标头指定 worker 的最大作用域列表。
@@ -137,8 +137,6 @@ self.addEventListener('fetch', (event) => {
     )
   } catch (error) {
     console.error(error)
-    // 返回兜底响应
-    return fetch(event.request);
   }
 })
 
