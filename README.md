@@ -1,4 +1,4 @@
-# ReactPureFrame
+# VuePureFrame
 
 一个从零搭建的Vue3纯净框架 <br/>
 A Vue3 pure frame build up from nothing
