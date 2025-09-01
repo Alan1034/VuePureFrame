@@ -21,8 +21,9 @@ export default defineConfig(({ command, mode }) => {
   // console.log(env.CURRENT_ENV)
   // console.log(env.APP_ENV)
   // console.log(env.VUE_APP_BASE_API)
+  const baseApi=env.APP_BASE_API ? '/' + env.APP_BASE_API : ''
   return {
-    base: `${env.APP_BASE_API ? '/' + env.APP_BASE_API : ''}/`, // 部署在GitHub Pages需要加上base，詳見：https://cn.vitejs.dev/guide/static-deploy.html#github-pages
+    base: `${baseApi}/`, // 部署在GitHub Pages需要加上base，詳見：https://cn.vitejs.dev/guide/static-deploy.html#github-pages
     // vite环境变量配置
     define: {
       CURRENT_ENV: JSON.stringify(env.CURRENT_ENV),
@@ -36,7 +37,7 @@ export default defineConfig(({ command, mode }) => {
       // 每次启动的时候都强制进行预构建
       // force: true,
       // proxy: {
-      // [`/${env.APP_BASE_API}/api`]: {
+      // [`${baseApi}/api`]: {
       //     target: 'https://test.com',
       //     changeOrigin: true,
       //     rewrite: (path) => path.replace(/^\/api/, ''),
